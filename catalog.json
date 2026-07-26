@@ -1,0 +1,66 @@
+{
+  "brand": {
+    "name": "Your Digital Event",
+    "whatsappSales": "528991234567",
+    "salesMessage": "Hola! Vi el diseño {DESIGN} ({TYPE}). Quiero ese 😄. ¿Me compartes información de paquetes y precio?"
+  },
+  "items": [
+    {
+      "id": "eclipse",
+      "name": "Eclipse",
+      "type": "Boda",
+      "collection": "Minimal & Elegante",
+      "style": ["Elegante", "Minimal"],
+      "description": "Oscuro, dorado, premium internacional.",
+      "demoUrl": "templates/bodas/eclipse-demo/",
+      "cover": "assets/covers/eclipse.jpg",
+      "featured": true
+    },
+    {
+      "id": "aura",
+      "name": "Aura",
+      "type": "Boda",
+      "collection": "Minimal & Elegante",
+      "style": ["Minimal", "Elegante"],
+      "description": "Minimal cálido, beige y dorado suave.",
+      "demoUrl": "templates/bodas/aura-demo/",
+      "cover": "assets/covers/aura.jpg",
+      "featured": false
+    },
+    {
+      "id": "ivory",
+      "name": "Ivory",
+      "type": "Boda",
+      "collection": "Minimal & Elegante",
+      "style": ["Minimal", "Elegante"],
+      "description": "Marfil con acento olivo minimal y elegante.",
+      "demoUrl": "templates/bodas/ivory-demo/",
+      "cover": "assets/covers/ivory.jpg",
+      "featured": false
+    },
+
+
+    {
+      "id": "blush",
+      "name": "Blush",
+      "type": "XV",
+      "collection": "Glam juvenil",
+      "style": ["Juvenil", "Glam"],
+      "description": "Rosa champagne, glam juvenil.",
+      "demoUrl": "templates/xv/blush-demo/",
+      "cover": "assets/covers/blush.jpg",
+      "featured": false
+    },
+    {
+      "id": "regal-xv",
+      "name": "Regal",
+      "type": "XV",
+      "collection": "Glam juvenil",
+      "style": ["Juvenil", "Glam"],
+      "description": "Estilo premium y detalles rose-gold.",
+      "demoUrl": "templates/xv/regal-demo/",
+      "cover": "assets/covers/regal.jpg",
+      "featured": false
+    }
+  ]
+}

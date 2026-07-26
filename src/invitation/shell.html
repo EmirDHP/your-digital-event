@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="{{LANG}}">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="{{THEME_COLOR}}" />
+    <title>{{TITLE}}</title>
+    <link rel="icon" href="data:," />
+
+{{FONT_LINKS}}
+
+    <link rel="stylesheet" href="{{THEME_CSS_HREF}}" />
+</head>
+<body class="locked">
+    <!-- Intro Gate -->
+    <div id="gate" class="gate">
+        <div class="gate-card">
+        <div class="gate-sub" id="gateDate">{{DATE_DISPLAY}}</div>
+        <h1 class="gate-title" id="gateNames">{{NAMES}}</h1>
+        <button class="btn btn-primary" id="openInvite">Abrir invitación</button>
+        <div class="gate-hint">Desliza para explorar</div>
+        </div>
+    </div>
+
+    <!-- Top Nav -->
+    <header class="topbar">
+        <div class="brand">Your Digital Event</div>
+        <nav class="nav">
+{{NAVIGATION}}
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <main class="main">
+        <section class="hero" id="inicio">
+        <div class="hero-bg" id="heroBg"></div>
+        <div class="hero-content">
+            <div class="chip" id="tagline">{{TAGLINE}}</div>
+            <h2 class="hero-names" id="heroNames">{{NAMES}}</h2>
+            <div class="gold-divider"></div>
+            <div class="hero-meta">
+            <span id="heroDate">{{DATE_DISPLAY}}</span>
+            <span class="dot">•</span>
+            <span id="heroTime">{{TIME_DISPLAY}}</span>
+            </div>
+
+<!-- IF:countdown -->
+            <div class="countdown" aria-label="Cuenta regresiva">
+            <div class="cd-item"><div class="cd-num" id="cdDays">--</div><div class="cd-lbl">Días</div></div>
+            <div class="cd-item"><div class="cd-num" id="cdHours">--</div><div class="cd-lbl">Horas</div></div>
+            <div class="cd-item"><div class="cd-num" id="cdMins">--</div><div class="cd-lbl">Min</div></div>
+            <div class="cd-item"><div class="cd-num" id="cdSecs">--</div><div class="cd-lbl">Seg</div></div>
+            </div>
+<!-- ENDIF:countdown -->
+
+            <div class="hero-cta">
+<!-- IF:details -->
+            <a class="btn btn-ghost" href="#detalles">Ver detalles</a>
+<!-- ENDIF:details -->
+<!-- IF:rsvp -->
+            <a class="btn btn-primary" href="#rsvp">Confirmar</a>
+<!-- ENDIF:rsvp -->
+            </div>
+
+<!-- IF:music -->
+            <div class="music" id="musicWrap" hidden>
+            <button class="btn btn-ghost" id="musicBtn">Reproducir música</button>
+            <audio id="musicAudio" preload="none"></audio>
+            </div>
+<!-- ENDIF:music -->
+        </div>
+        </section>
+
+<!-- IF:message -->
+        <!-- Message -->
+        <section class="section message">
+        <h3 class="section-title" id="msgTitle">{{MESSAGE_TITLE}}</h3>
+        <p class="section-text" id="msgBody">{{MESSAGE_BODY}}</p>
+        </section>
+<!-- ENDIF:message -->
+
+<!-- IF:details -->
+        <!-- Details -->
+        <section class="section" id="detalles">
+        <h3 class="section-title">Detalles</h3>
+
+        <div class="cards">
+            <article class="card">
+            <div class="card-label">Fecha</div>
+            <div class="card-value" id="detailsDate">{{DATE_DISPLAY}}</div>
+            </article>
+
+            <article class="card">
+            <div class="card-label">Hora</div>
+            <div class="card-value" id="detailsTime">{{TIME_DISPLAY}}</div>
+            </article>
+
+            <article class="card">
+            <div class="card-label">Lugar</div>
+            <div class="card-value" id="detailsVenue">{{VENUE_NAME}}</div>
+            <div class="card-sub" id="detailsAddr">{{VENUE_ADDRESS}}</div>
+<!-- IF:maps -->
+            <a class="link" id="mapsLink" href="#" target="_blank" rel="noopener noreferrer">Ver ubicación</a>
+<!-- ENDIF:maps -->
+            </article>
+        </div>
+        </section>
+<!-- ENDIF:details -->
+
+<!-- IF:schedule -->
+        <!-- Schedule -->
+        <section class="section" id="itinerario">
+        <h3 class="section-title">Itinerario</h3>
+        <div class="timeline" id="scheduleList">
+            <!-- JS inject -->
+        </div>
+        </section>
+<!-- ENDIF:schedule -->
+
+<!-- IF:story -->
+        <!-- Story -->
+        <section class="section" id="historia" hidden>
+        <div class="story-head">
+            <div class="chip story-chip" id="storySubtitle">{{STORY_SUBTITLE}}</div>
+            <h3 class="section-title" id="storyTitle">{{STORY_TITLE}}</h3>
+        </div>
+
+        <div class="story-list" id="storyList">
+            <!-- JS inject -->
+        </div>
+        </section>
+<!-- ENDIF:story -->
+
+<!-- IF:gallery -->
+        <!-- Gallery -->
+        <section class="section" id="galeria">
+        <h3 class="section-title">Galería</h3>
+        <div class="gallery" id="galleryGrid">
+            <!-- JS inject -->
+        </div>
+        <div class="muted">Tip: usa 6–10 fotos máximo para mantener un estilo premium.</div>
+        </section>
+<!-- ENDIF:gallery -->
+
+<!-- IF:dressCode -->
+        <!-- Dress code -->
+        <section class="section">
+        <h3 class="section-title">Código de vestimenta</h3>
+        <div class="pill" id="dressCode">{{DRESS_CODE}}</div>
+        </section>
+<!-- ENDIF:dressCode -->
+
+<!-- IF:gifts -->
+        <!-- Gifts -->
+        <section class="section" id="regalos" hidden>
+        <h3 class="section-title" id="giftsTitle">{{GIFTS_TITLE}}</h3>
+        <p class="section-text" id="giftsIntro">{{GIFTS_INTRO}}</p>
+
+        <div class="gift-grid" id="giftsList">
+            <!-- JS inject -->
+        </div>
+        </section>
+<!-- ENDIF:gifts -->
+
+<!-- IF:rsvp -->
+        <!-- RSVP -->
+        <section class="section" id="rsvp">
+        <h3 class="section-title">Confirmación</h3>
+        <p class="section-text">Confirma por WhatsApp con un mensaje rápido:</p>
+
+        <div class="rsvp-box">
+            <input
+            id="guestName"
+            class="input"
+            type="text"
+            placeholder="Escribe tu nombre..."
+            autocomplete="name"
+            inputmode="text"
+            enterkeyhint="send"
+            />
+            <button class="btn btn-primary" id="rsvpBtn" type="button">Confirmar por WhatsApp</button>
+            <div class="muted small">Se abrirá WhatsApp con el mensaje listo para enviar.</div>
+        </div>
+        </section>
+<!-- ENDIF:rsvp -->
+
+        <footer class="footer">
+        <div id="footerText">{{FOOTER_TEXT}}</div>
+        </footer>
+    </main>
+
+<!-- IF:gallery -->
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" hidden aria-hidden="true">
+    <div class="lb-backdrop" id="lbBackdrop"></div>
+
+    <div class="lb-panel" role="dialog" aria-modal="true" aria-label="Galería">
+        <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Cerrar">×</button>
+
+        <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="Anterior">‹</button>
+        <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="Siguiente">›</button>
+
+        <img id="lbImg" class="lb-img" alt="Foto" />
+        <div class="lb-caption" id="lbCaption"></div>
+    </div>
+    </div>
+<!-- ENDIF:gallery -->
+
+    <script type="application/json" id="event-config">{{EVENT_CONFIG}}</script>
+    <script type="application/json" id="theme-runtime-options">{{THEME_RUNTIME_OPTIONS}}</script>
+    <script type="module" src="{{RUNTIME_HREF}}"></script>
+</body>
+</html>

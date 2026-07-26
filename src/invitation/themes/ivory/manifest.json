@@ -1,0 +1,45 @@
+{
+  "id": "ivory",
+  "name": "Ivory",
+  "themeColor": "#F7F3EC",
+  "css": "theme.css",
+  "fonts": [
+    {
+      "rel": "preconnect",
+      "href": "https://fonts.googleapis.com"
+    },
+    {
+      "rel": "preconnect",
+      "href": "https://fonts.gstatic.com",
+      "crossorigin": true
+    },
+    {
+      "rel": "stylesheet",
+      "href": "https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap"
+    }
+  ],
+  "runtimeOptions": {
+    "preserveEmptyHeroState": true,
+    "revealProfile": {
+      "baseSelectors": [
+        ".hero-content",
+        ".message",
+        "#detalles",
+        "#itinerario",
+        "#historia",
+        "#galeria",
+        "#regalos",
+        "#rsvp",
+        ".footer"
+      ],
+      "itemSelectors": [
+        ".cards .card",
+        ".timeline .tl-item",
+        ".gallery .gimg",
+        "#historia .story-card",
+        "#regalos .gift-card",
+        ".countdown .cd-item"
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+# Dependencias
+node_modules/
+
+# Salida generada
+dist/
+
+# Migraciones temporales y respaldos locales
+.migration-staging/
+.migration-backups/
+
+# Archivos temporales
+*.tmp
+*.temp
+*.log
+
+# Variables y secretos locales
+.env
+.env.*
+!.env.example
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Configuración local de VS Code
+.vscode/

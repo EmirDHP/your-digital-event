@@ -1,0 +1,90 @@
+{
+  "template": "blush-xv",
+  "eventType": "xv",
+  "names": "María Fernanda",
+  "tagline": "Mis XV",
+  "dateISO": "2026-09-19T20:00:00-06:00",
+  "dateDisplay": "19 · Septiembre · 2026",
+  "timeDisplay": "8:00 PM",
+  "venueName": "Salón Jardín Real",
+  "addressLine": "Blvd. Morelos 500, Reynosa, Tamaulipas",
+  "mapsUrl": "https://maps.google.com/?q=Reynosa%20Tamaulipas",
+  "messageTitle": "Te invito a celebrar conmigo",
+  "messageBody": "Acompáñame en una noche inolvidable. Tu presencia hará mi día aún más especial.",
+  "schedule": [
+    { "time": "8:00 PM", "title": "Recepción" },
+    { "time": "9:00 PM", "title": "Vals" },
+    { "time": "10:00 PM", "title": "Cena" },
+    { "time": "11:00 PM", "title": "Fiesta" }
+  ],
+  "dressCode": "Formal / Glam",
+  "rsvp": {
+    "whatsappNumber": "528991234567",
+    "whatsappMessage": "¡Hola! Confirmo mi asistencia a los XV de María Fernanda. Mi nombre es: "
+  },
+  "gallery": [
+      { "thumb": "assets/thumbs/gallery1.jpg", "full": "assets/full/gallery1.jpg", "alt": "María Fernanda" },
+      { "thumb": "assets/thumbs/gallery2.jpg", "full": "assets/full/gallery2.jpg", "alt": "Sesión" },
+      { "thumb": "assets/thumbs/gallery3.jpg", "full": "assets/full/gallery3.jpg", "alt": "Foto 3" },
+      { "thumb": "assets/thumbs/gallery4.jpg", "full": "assets/full/gallery4.jpg", "alt": "Foto 4" },
+      { "thumb": "assets/thumbs/gallery5.jpg", "full": "assets/full/gallery5.jpg", "alt": "Foto 5" },
+      { "thumb": "assets/thumbs/gallery6.jpg", "full": "assets/full/gallery6.jpg", "alt": "Foto 6" },
+      { "thumb": "assets/thumbs/gallery7.jpg", "full": "assets/full/gallery7.jpg", "alt": "Foto 7" },
+      { "thumb": "assets/thumbs/gallery8.jpg", "full": "assets/full/gallery8.jpg", "alt": "Foto 8" }
+    ],
+  "heroImage": "",
+  "music": {
+    "enabled": true,
+    "src": "assets/audio.mp3",
+    "label": "Reproducir música"
+  },
+  "branding": {
+    "footerText": "Diseñado por Your Digital Event"
+  },
+  "story": {
+    "enabled": true,
+    "title": "Mi historia",
+    "subtitle": "Momentos especiales",
+    "items": [
+      {
+        "title": "Mi camino hasta hoy",
+        "text": "Cada etapa ha estado llena de aprendizajes, sueños y personas que han sido muy importantes para mí.",
+        "image": "assets/story/story1.jpg"
+      },
+      {
+        "title": "Un momento inolvidable",
+        "text": "Este festejo representa una etapa muy especial en mi vida y me llena de emoción poder compartirla.",
+        "image": "assets/story/story2.jpg"
+      },
+      {
+        "title": "Gracias por acompañarme",
+        "text": "Tu presencia hace este día aún más especial. Gracias por ser parte de este momento tan importante.",
+        "image": "assets/story/story3.jpg"
+      }
+    ]
+  },
+  "gifts": {
+    "enabled": true,
+    "title": "Mesa de regalos",
+    "intro": "Tu compañía es el mejor regalo. Si deseas obsequiarme algo, aquí te comparto algunas opciones:",
+    "options": [
+      {
+        "type": "sobre",
+        "label": "Lluvia de sobres",
+        "text": "Habrá un espacio disponible el día del evento para recibir sobres."
+      },
+      {
+        "type": "transfer",
+        "label": "Transferencia bancaria",
+        "bank": "BBVA",
+        "holder": "María Fernanda",
+        "clabe": "012345678901234567"
+      },
+      {
+        "type": "wishlist",
+        "label": "Wishlist",
+        "url": "https://www.amazon.com/"
+      }
+    ]
+  }
+}

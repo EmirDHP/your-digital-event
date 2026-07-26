@@ -1,0 +1,160 @@
+{
+    "schemaVersion":  1,
+    "slug":  "sofia-y-carlos",
+    "theme":  "eclipse",
+    "event":  {
+                  "type":  "wedding",
+                  "names":  "Sofía \u0026 Carlos",
+                  "tagline":  "Nos casamos",
+                  "date":  {
+                               "iso":  "2026-10-12T18:00:00-06:00",
+                               "timeZone":  "America/Matamoros",
+                               "display":  "12 · Octubre · 2026",
+                               "timeDisplay":  "6:00 PM"
+                           },
+                  "venue":  {
+                                "name":  "Salón Las Palmas",
+                                "address":  "Blvd. Hidalgo 123, Reynosa, Tamaulipas",
+                                "mapsUrl":  "https://maps.google.com/?q=Reynosa%20Tamaulipas"
+                            }
+              },
+    "sections":  {
+                     "message":  {
+                                     "enabled":  true,
+                                     "title":  "Con la bendición de nuestras familias",
+                                     "body":  "Te invitamos a celebrar con nosotros este día tan especial. Tu presencia hará nuestro momento aún más inolvidable."
+                                 },
+                     "countdown":  {
+                                       "enabled":  true
+                                   },
+                     "details":  {
+                                     "enabled":  true
+                                 },
+                     "schedule":  {
+                                      "enabled":  true,
+                                      "items":  [
+                                                    {
+                                                        "time":  "6:00 PM",
+                                                        "title":  "Ceremonia"
+                                                    },
+                                                    {
+                                                        "time":  "7:30 PM",
+                                                        "title":  "Recepción"
+                                                    },
+                                                    {
+                                                        "time":  "9:00 PM",
+                                                        "title":  "Cena"
+                                                    },
+                                                    {
+                                                        "time":  "10:30 PM",
+                                                        "title":  "Fiesta"
+                                                    }
+                                                ]
+                                  },
+                     "story":  {
+                                   "enabled":  true,
+                                   "title":  "Nuestra historia",
+                                   "subtitle":  "Cómo sucedió",
+                                   "items":  [
+                                                 {
+                                                     "title":  "Cómo nos conocimos",
+                                                     "text":  "Nos conocimos en un momento inesperado...",
+                                                     "image":  "assets/story/story1.jpg",
+                                                     "alt":  "Cómo nos conocimos"
+                                                 },
+                                                 {
+                                                     "title":  "La propuesta",
+                                                     "text":  "Con el corazón lleno de emoción...",
+                                                     "image":  "assets/story/story2.jpg",
+                                                     "alt":  "La propuesta"
+                                                 },
+                                                 {
+                                                     "title":  "El gran día se acerca",
+                                                     "text":  "Hoy queremos celebrar este capítulo...",
+                                                     "image":  "assets/story/story3.jpg",
+                                                     "alt":  "El gran día se acerca"
+                                                 }
+                                             ]
+                               },
+                     "gallery":  {
+                                     "enabled":  true,
+                                     "items":  [
+                                                   {
+                                                       "thumb":  "assets/gallery/thumbs/gallery1.jpg",
+                                                       "full":  "assets/gallery/full/gallery1.jpg",
+                                                       "alt":  "Foto 1"
+                                                   },
+                                                   {
+                                                       "thumb":  "assets/gallery/thumbs/gallery2.jpg",
+                                                       "full":  "assets/gallery/full/gallery2.jpg",
+                                                       "alt":  "Foto 2"
+                                                   },
+                                                   {
+                                                       "thumb":  "assets/gallery/thumbs/gallery3.jpg",
+                                                       "full":  "assets/gallery/full/gallery3.jpg",
+                                                       "alt":  "Foto 3"
+                                                   },
+                                                   {
+                                                       "thumb":  "assets/gallery/thumbs/gallery4.jpg",
+                                                       "full":  "assets/gallery/full/gallery4.jpg",
+                                                       "alt":  "Foto 4"
+                                                   },
+                                                   {
+                                                       "thumb":  "assets/gallery/thumbs/gallery5.jpg",
+                                                       "full":  "assets/gallery/full/gallery5.jpg",
+                                                       "alt":  "Foto 5"
+                                                   },
+                                                   {
+                                                       "thumb":  "assets/gallery/thumbs/gallery6.jpg",
+                                                       "full":  "assets/gallery/full/gallery6.jpg",
+                                                       "alt":  "Foto 6"
+                                                   }
+                                               ]
+                                 },
+                     "dressCode":  {
+                                       "enabled":  true,
+                                       "text":  "Formal elegante"
+                                   },
+                     "gifts":  {
+                                   "enabled":  true,
+                                   "title":  "Mesa de regalos",
+                                   "intro":  "Tu presencia es nuestro mejor regalo, pero si deseas tener un detalle con nosotros, aquí te compartimos opciones:",
+                                   "options":  [
+                                                   {
+                                                       "type":  "sobre",
+                                                       "label":  "Lluvia de sobres",
+                                                       "text":  "Habrá un espacio disponible el día del evento."
+                                                   },
+                                                   {
+                                                       "type":  "transfer",
+                                                       "label":  "Transferencia bancaria",
+                                                       "bank":  "BBVA",
+                                                       "holder":  "Sofía García",
+                                                       "clabe":  "012345678901234567"
+                                                   },
+                                                   {
+                                                       "type":  "wishlist",
+                                                       "label":  "Amazon Wishlist",
+                                                       "url":  "https://www.amazon.com/..."
+                                                   }
+                                               ]
+                               },
+                     "rsvp":  {
+                                  "enabled":  true,
+                                  "channel":  "whatsapp",
+                                  "number":  "528991234567",
+                                  "message":  "¡Hola! Confirmo mi asistencia a la boda de Sofía \u0026 Carlos. Mi nombre es: "
+                              },
+                     "music":  {
+                                   "enabled":  true,
+                                   "src":  "assets/audio/audio.mp3",
+                                   "label":  "Reproducir música"
+                               }
+                 },
+    "media":  {
+
+              },
+    "branding":  {
+                     "footerText":  "Diseñado por Your Digital Event"
+                 }
+}

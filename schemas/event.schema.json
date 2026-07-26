@@ -1,0 +1,618 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "event.schema.json",
+  "title": "Your Digital Event invitation configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "slug",
+    "theme",
+    "event",
+    "sections",
+    "media",
+    "branding"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "language": {
+      "type": "string",
+      "minLength": 2,
+      "pattern": "^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "theme": {
+      "type": "string",
+      "enum": ["aura", "eclipse", "ivory", "blush", "regal"]
+    },
+    "event": {
+      "$ref": "#/$defs/event"
+    },
+    "sections": {
+      "$ref": "#/$defs/sections"
+    },
+    "media": {
+      "$ref": "#/$defs/media"
+    },
+    "branding": {
+      "$ref": "#/$defs/branding"
+    }
+  },
+  "$defs": {
+    "safeAssetPath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*%2[eE])(?!.*\\\\)(?![A-Za-z][A-Za-z0-9+.-]*:).+$"
+    },
+    "httpUrl": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https?://"
+    },
+    "httpsUrl": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "names", "date", "venue"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["wedding", "xv", "event"]
+        },
+        "names": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "date": {
+          "$ref": "#/$defs/date"
+        },
+        "venue": {
+          "$ref": "#/$defs/venue"
+        }
+      }
+    },
+    "date": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["iso", "timeZone", "display", "timeDisplay"],
+      "properties": {
+        "iso": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "timeZone": {
+          "type": "string",
+          "minLength": 1
+        },
+        "display": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timeDisplay": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "venue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "address"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "address": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mapsUrl": {
+          "$ref": "#/$defs/httpUrl"
+        }
+      }
+    },
+    "sections": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "message",
+        "countdown",
+        "details",
+        "schedule",
+        "story",
+        "gallery",
+        "dressCode",
+        "gifts",
+        "rsvp",
+        "music"
+      ],
+      "properties": {
+        "message": {
+          "$ref": "#/$defs/messageSection"
+        },
+        "countdown": {
+          "$ref": "#/$defs/toggleSection"
+        },
+        "details": {
+          "$ref": "#/$defs/toggleSection"
+        },
+        "schedule": {
+          "$ref": "#/$defs/scheduleSection"
+        },
+        "story": {
+          "$ref": "#/$defs/storySection"
+        },
+        "gallery": {
+          "$ref": "#/$defs/gallerySection"
+        },
+        "dressCode": {
+          "$ref": "#/$defs/dressCodeSection"
+        },
+        "gifts": {
+          "$ref": "#/$defs/giftsSection"
+        },
+        "rsvp": {
+          "$ref": "#/$defs/rsvpSection"
+        },
+        "music": {
+          "$ref": "#/$defs/musicSection"
+        }
+      }
+    },
+    "toggleSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "messageSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "enabled": { "const": true }
+            },
+            "required": ["enabled"]
+          },
+          "then": {
+            "required": ["title", "body"]
+          }
+        }
+      ]
+    },
+    "scheduleSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/scheduleItem"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "enabled": { "const": true }
+            },
+            "required": ["enabled"]
+          },
+          "then": {
+            "required": ["items"]
+          }
+        }
+      ]
+    },
+    "scheduleItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["time", "title"],
+      "properties": {
+        "time": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "storySection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subtitle": {
+          "type": "string",
+          "minLength": 1
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/storyItem"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "enabled": { "const": true }
+            },
+            "required": ["enabled"]
+          },
+          "then": {
+            "required": ["title", "subtitle", "items"]
+          }
+        }
+      ]
+    },
+    "storyItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "text"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "image": {
+          "$ref": "#/$defs/safeAssetPath"
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": ["image"]
+          },
+          "then": {
+            "required": ["alt"]
+          }
+        }
+      ]
+    },
+    "gallerySection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/galleryItem"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "enabled": { "const": true }
+            },
+            "required": ["enabled"]
+          },
+          "then": {
+            "required": ["items"]
+          }
+        }
+      ]
+    },
+    "galleryItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["alt"],
+      "properties": {
+        "thumb": {
+          "$ref": "#/$defs/safeAssetPath"
+        },
+        "full": {
+          "$ref": "#/$defs/safeAssetPath"
+        },
+        "src": {
+          "$ref": "#/$defs/safeAssetPath"
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "anyOf": [
+        { "required": ["thumb"] },
+        { "required": ["full"] },
+        { "required": ["src"] }
+      ]
+    },
+    "dressCodeSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "enabled": { "const": true }
+            },
+            "required": ["enabled"]
+          },
+          "then": {
+            "required": ["text"]
+          }
+        }
+      ]
+    },
+    "giftsSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "intro": {
+          "type": "string",
+          "minLength": 1
+        },
+        "options": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              { "$ref": "#/$defs/envelopeGift" },
+              { "$ref": "#/$defs/transferGift" },
+              { "$ref": "#/$defs/wishlistGift" }
+            ]
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "enabled": { "const": true }
+            },
+            "required": ["enabled"]
+          },
+          "then": {
+            "required": ["title", "intro", "options"]
+          }
+        }
+      ]
+    },
+    "envelopeGift": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "label", "text"],
+      "properties": {
+        "type": {
+          "const": "sobre"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "transferGift": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "label", "bank", "holder", "clabe"],
+      "properties": {
+        "type": {
+          "const": "transfer"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bank": {
+          "type": "string",
+          "minLength": 1
+        },
+        "holder": {
+          "type": "string",
+          "minLength": 1
+        },
+        "clabe": {
+          "type": "string",
+          "pattern": "^\\d{18}$"
+        }
+      }
+    },
+    "wishlistGift": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "label", "url"],
+      "properties": {
+        "type": {
+          "const": "wishlist"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "$ref": "#/$defs/httpsUrl"
+        }
+      }
+    },
+    "rsvpSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "channel": {
+          "type": "string",
+          "enum": ["whatsapp"]
+        },
+        "number": {
+          "type": "string",
+          "pattern": "^\\d{8,15}$"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "enabled": { "const": true }
+            },
+            "required": ["enabled"]
+          },
+          "then": {
+            "required": ["channel", "number", "message"]
+          }
+        }
+      ]
+    },
+    "musicSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "src": {
+          "$ref": "#/$defs/safeAssetPath"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "enabled": { "const": true }
+            },
+            "required": ["enabled"]
+          },
+          "then": {
+            "required": ["src"]
+          }
+        }
+      ]
+    },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "hero": {
+          "$ref": "#/$defs/heroMedia"
+        }
+      }
+    },
+    "heroMedia": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["src", "alt"],
+      "properties": {
+        "src": {
+          "$ref": "#/$defs/safeAssetPath"
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "branding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["footerText"],
+      "properties": {
+        "footerText": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

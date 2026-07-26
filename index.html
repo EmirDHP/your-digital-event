@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#f7f4ee" />
+  <title>Your Digital Event</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="assets/hero-phone.webp" as="image" type="image/webp">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css" />
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body class="page-home">
+  <a class="skip-link" href="#contenido-principal">Ir al contenido principal</a>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#inicio">
+        <span class="mark" aria-hidden="true"></span>
+        <span class="brand-text">
+          <span class="brand-name">Your Digital Event</span>
+          <span class="brand-sub">Invitaciones digitales</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Abrir menú">
+        <span class="nav-toggle-lines" aria-hidden="true"></span>
+      </button>
+
+      <nav class="nav-links" id="primary-nav" aria-label="Navegación principal">
+        <a href="#categorias">Categorías</a>
+        <a href="#incluye">Qué incluye</a>
+        <a href="#paquetes">Paquetes</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn btn-primary" id="ctaWhatsTop" href="#" target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp, se abre en una pestaña nueva">Cotizar</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido-principal" tabindex="-1">
+
+    <section class="hero" id="inicio">
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <p class="kicker">Bodas • XV • Eventos</p>
+          <h1>
+            <span class="hero-title-main">Invitaciones digitales premium</span>
+            <span class="hero-title-emotion">listas para compartir.</span>
+          </h1>
+          <p class="lead">
+            Elige una categoría, selecciona un diseño y lo personalizamos con tus datos, fotos y secciones.
+            Recibes un link listo para enviar por WhatsApp.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" id="ctaWhatsHero" href="#" target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp, se abre en una pestaña nueva">
+              <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 11.6a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.6Z" />
+                <path d="M8.5 8.2c.4 2.8 2.5 5 5.3 5.5l1.2-1.2c.2-.2.5-.3.8-.2l2 .7" />
+              </svg>
+              Cotizar por WhatsApp
+            </a>
+            <a class="btn btn-ghost" href="#categorias">Ver categorías</a>
+          </div>
+
+          <div class="hero-benefits" aria-label="Beneficios principales">
+            <span class="hero-benefit">Diseño personalizado</span>
+            <span class="hero-benefit">Optimizada para celular</span>
+            <span class="hero-benefit">Link listo para compartir</span>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <img class="hero-img" src="assets/hero-phone.webp" alt="Invitación digital personalizada mostrada en un celular" decoding="async" fetchpriority="high" />
+          <span class="hero-label hero-label-rsvp">RSVP por WhatsApp</span>
+          <span class="hero-label hero-label-media">Música y galería</span>
+          <span class="hero-label hero-label-link">Link listo para compartir</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categorías -->
+    <section class="section" id="categorias">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-eyebrow">EXPLORA POR EVENTO</p>
+          <h2>Encuentra el estilo para tu celebración</h2>
+          <p class="muted">Entra a la categoría y explora los diseños por colecciones (minimal, glam, clásicas, etc.).</p>
+        </div>
+
+        <div class="cat-grid">
+          <a class="cat-card cat-card-wedding" href="bodas.html">
+            <div class="cat-content">
+              <div class="cat-top">
+                <div class="cat-label">Colección de boda</div>
+                <h3 class="cat-title">Bodas</h3>
+              </div>
+              <div class="cat-sub">Colecciones elegantes y minimalistas</div>
+              <div class="cat-art cat-art-wedding" aria-hidden="true">
+                <svg class="cat-symbol" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+                  <path d="M27 91V59a33 33 0 0 1 66 0v32" />
+                  <circle cx="51" cy="63" r="18" />
+                  <circle cx="69" cy="63" r="18" />
+                </svg>
+              </div>
+              <div class="cat-cta">
+                Explorar diseños
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" /></svg>
+              </div>
+            </div>
+          </a>
+
+          <a class="cat-card cat-card-xv" href="xv.html">
+            <div class="cat-content">
+              <div class="cat-top">
+                <div class="cat-label">Colección de XV</div>
+                <h3 class="cat-title">Quinceañeras</h3>
+              </div>
+              <div class="cat-sub">Glam juvenil y estilos modernos</div>
+              <div class="cat-art cat-art-xv" aria-hidden="true">
+                <svg class="cat-symbol" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+                  <path d="M36 52 54 78M54 52 36 78M66 52l9 26 9-26" />
+                  <path d="m60 19 3 8 8 3-8 3-3 8-3-8-8-3 8-3 3-8Z" />
+                </svg>
+              </div>
+              <div class="cat-cta">
+                Explorar diseños
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" /></svg>
+              </div>
+            </div>
+          </a>
+
+          <a class="cat-card cat-card-events" href="eventos.html">
+            <div class="cat-content">
+              <div class="cat-top">
+                <div class="cat-label">Celebraciones y eventos</div>
+                <h3 class="cat-title">Eventos</h3>
+              </div>
+              <div class="cat-sub">Cumpleaños, corporativos y más</div>
+              <div class="cat-art cat-art-events" aria-hidden="true">
+                <svg class="cat-symbol" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+                  <rect x="27" y="32" width="66" height="62" rx="9" />
+                  <path d="M27 51h66M43 23v18M77 23v18" />
+                  <path d="m60 61 2.5 7 7 2.5-7 2.5-2.5 7-2.5-7-7-2.5 7-2.5 2.5-7Z" />
+                </svg>
+              </div>
+              <div class="cat-cta">
+                Explorar diseños
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" /></svg>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Qué incluye -->
+    <section class="section alt" id="incluye">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-eyebrow">UNA EXPERIENCIA COMPLETA</p>
+          <h2>Qué incluye tu invitación</h2>
+          <p class="muted">Las secciones pueden variar según el paquete. En Premium/VIP puedes incluir todo.</p>
+        </div>
+
+        <div class="include-layout">
+          <div class="include-visual">
+            <img src="assets/hero-phone-2.webp" alt="Invitación digital adaptada a tablet y celular" loading="lazy" decoding="async" />
+          </div>
+
+          <div class="include">
+            <article class="include-col">
+              <div class="include-group-head">
+                <svg class="include-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="4" y="5" width="16" height="15" rx="2" />
+                  <path d="M8 3v4M16 3v4M4 10h16M8 14h3" />
+                </svg>
+                <h3>Información del evento</h3>
+              </div>
+              <ul class="include-list">
+                <li>Contador</li>
+                <li>Ubicación (Google Maps)</li>
+                <li>Itinerario</li>
+                <li>Código de vestimenta</li>
+              </ul>
+            </article>
+
+            <article class="include-col">
+              <div class="include-group-head">
+                <svg class="include-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 7h16v12H4zM8 7l2-3h4l2 3" />
+                  <circle cx="12" cy="13" r="3" />
+                </svg>
+                <h3>Experiencia</h3>
+              </div>
+              <ul class="include-list">
+                <li>Galería + Lightbox</li>
+                <li>Música</li>
+                <li>Historia / Momentos</li>
+                <li>Mesa de regalos</li>
+              </ul>
+            </article>
+
+            <article class="include-col">
+              <div class="include-group-head">
+                <svg class="include-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 11a8 8 0 0 1-12 7l-4 2 1.5-4A8 8 0 1 1 20 11Z" />
+                  <path d="m9 11 2 2 4-4" />
+                </svg>
+                <h3>Confirmación</h3>
+              </div>
+              <ul class="include-list">
+                <li>RSVP por WhatsApp</li>
+                <li>Link listo para compartir</li>
+                <li>Diseño adaptable (Boda/XV)</li>
+                <li>Soporte de cambios</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Paquetes -->
+    <section class="section" id="paquetes">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-eyebrow">ELIGE TU EXPERIENCIA</p>
+          <h2>Paquetes</h2>
+          <p class="muted">Cualquier diseño se puede adaptar al paquete que elijas.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card price-card-essential">
+            <div class="price-top">
+              <div>
+                <h3 class="price-name">Esencial</h3>
+                <div class="muted small">Para compartir lo básico</div>
+              </div>
+              <div class="price-from">
+                <span class="price-label">Desde</span>
+                <strong class="price-amount">$999</strong>
+                <span class="price-currency">MXN</span>
+              </div>
+            </div>
+            <ul class="price-list">
+              <li>Portada + datos del evento</li>
+              <li>Ubicación (Google Maps)</li>
+              <li>RSVP por WhatsApp</li>
+            </ul>
+            <a class="btn btn-primary price-btn" id="packEsencial" href="#" target="_blank" rel="noopener" aria-label="Cotizar el paquete Esencial por WhatsApp, se abre en una pestaña nueva">Quiero este paquete</a>
+          </article>
+
+          <article class="price-card price-card-premium">
+            <div class="price-recommended">Más elegido</div>
+            <div class="price-top">
+              <div>
+                <h3 class="price-name">Premium</h3>
+                <div class="muted small">La experiencia completa</div>
+              </div>
+              <div class="price-from">
+                <span class="price-label">Desde</span>
+                <strong class="price-amount">$1,799</strong>
+                <span class="price-currency">MXN</span>
+              </div>
+            </div>
+            <ul class="price-list">
+              <li>Contador + itinerario + galería</li>
+              <li>Música opcional</li>
+              <li>Historia / Momentos</li>
+              <li>Mesa de regalos</li>
+            </ul>
+            <a class="btn btn-primary price-btn" id="packPremium" href="#" target="_blank" rel="noopener" aria-label="Cotizar el paquete Premium por WhatsApp, se abre en una pestaña nueva">Quiero este paquete</a>
+          </article>
+
+          <article class="price-card price-card-vip">
+            <div class="price-top">
+              <div>
+                <h3 class="price-name">VIP</h3>
+                <div class="muted small">Personalización avanzada</div>
+              </div>
+              <div class="price-from">
+                <span class="price-label">Desde</span>
+                <strong class="price-amount">$2,799</strong>
+                <span class="price-currency">MXN</span>
+              </div>
+            </div>
+            <ul class="price-list">
+              <li>Todo lo del Premium</li>
+              <li>Pase digital con QR (opcional)</li>
+              <li>Soporte prioritario</li>
+            </ul>
+            <a class="btn btn-primary price-btn" id="packVIP" href="#" target="_blank" rel="noopener" aria-label="Cotizar el paquete VIP por WhatsApp, se abre en una pestaña nueva">Quiero este paquete</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="wrap">
+        <div class="faq-layout">
+          <div class="faq-intro">
+            <div class="section-head">
+              <h2>Preguntas frecuentes</h2>
+              <p class="muted">Resolvemos lo más común para que cotices sin dudas.</p>
+            </div>
+            <a class="faq-help" href="#contacto">
+              <span>¿Tienes otra pregunta? Hablemos</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
+
+          <div class="faq">
+            <details class="qa">
+              <summary>
+                <span class="qa-number">01</span>
+                <span class="qa-question">¿Cuánto tarda la entrega?</span>
+                <svg class="qa-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m7 10 5 5 5-5" />
+                </svg>
+              </summary>
+              <div class="qa-answer">
+                <p class="muted">Normalmente 48–72 horas después de recibir datos y anticipo.</p>
+              </div>
+            </details>
+            <details class="qa">
+              <summary>
+                <span class="qa-number">02</span>
+                <span class="qa-question">¿Puedo cambiar fotos y textos?</span>
+                <svg class="qa-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m7 10 5 5 5-5" />
+                </svg>
+              </summary>
+              <div class="qa-answer">
+                <p class="muted">Sí. Incluimos revisiones según el paquete. Te mandamos preview antes de entregar.</p>
+              </div>
+            </details>
+            <details class="qa">
+              <summary>
+                <span class="qa-number">03</span>
+                <span class="qa-question">¿Puedo poner música?</span>
+                <svg class="qa-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m7 10 5 5 5-5" />
+                </svg>
+              </summary>
+              <div class="qa-answer">
+                <p class="muted">Sí, música opcional. Empieza al abrir la invitación.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="section alt" id="contacto">
+      <div class="wrap">
+        <div class="contact">
+          <div>
+            <h2><span>¿Listo para</span> <span class="contact-title-accent">cotizar?</span></h2>
+            <p class="muted">Dime si es boda o XV, la fecha y el diseño que te gustó. Te respondo por WhatsApp.</p>
+
+            <div class="contact-actions">
+              <a class="btn btn-primary" id="ctaWhatsBottom" href="#" target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp, se abre en una pestaña nueva">Cotizar por WhatsApp</a>
+              <a class="btn btn-ghost" href="#categorias">Ver categorías</a>
+            </div>
+          </div>
+
+          <ul class="contact-card" aria-label="Beneficios de tu invitación">
+            <li class="contact-line">
+              <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4 10-10" /></svg>
+              <span>Link listo para compartir</span>
+            </li>
+            <li class="contact-line">
+              <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4 10-10" /></svg>
+              <span>Secciones premium</span>
+            </li>
+            <li class="contact-line">
+              <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4 10-10" /></svg>
+              <span>Diseño para celular</span>
+            </li>
+            <li class="contact-line">
+              <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4 10-10" /></svg>
+              <span>Ajustes antes de entrega</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <div class="footer-brand">
+          <a class="footer-name" href="#inicio">Your Digital Event</a>
+          <p>Invitaciones digitales</p>
+        </div>
+        <div class="footer-copy">© <span id="year"></span> Your Digital Event</div>
+        <nav class="footer-links" aria-label="Navegación del pie">
+          <a class="muted" href="#categorias">Categorías</a>
+          <a class="muted" href="#paquetes">Paquetes</a>
+          <a class="muted" href="#faq">FAQ</a>
+          <a class="muted" href="#contacto">Contacto</a>
+        </nav>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="site.js"></script>
+  <script src="home.js"></script>
+</body>
+</html>

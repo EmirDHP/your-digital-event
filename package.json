@@ -1,0 +1,14 @@
+{
+  "name": "your-digital-event",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "scripts": {
+    "build": "node scripts/build-events.mjs",
+    "build:events": "node scripts/build-events.mjs",
+    "check": "node scripts/check-events.mjs",
+    "validate": "npm run build && npm run check"
+  }
+}

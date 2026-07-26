@@ -1,0 +1,160 @@
+{
+    "schemaVersion":  1,
+    "slug":  "valeria-y-mateo",
+    "theme":  "ivory",
+    "event":  {
+                  "type":  "wedding",
+                  "names":  "Valeria \u0026 Mateo",
+                  "tagline":  "Nos casamos",
+                  "date":  {
+                               "iso":  "2026-11-28T17:00:00-06:00",
+                               "timeZone":  "America/Matamoros",
+                               "display":  "28 · Noviembre · 2026",
+                               "timeDisplay":  "5:00 PM"
+                           },
+                  "venue":  {
+                                "name":  "Hacienda Santa Elena",
+                                "address":  "Reynosa, Tamaulipas",
+                                "mapsUrl":  "https://maps.google.com/?q=Reynosa%20Tamaulipas"
+                            }
+              },
+    "sections":  {
+                     "message":  {
+                                     "enabled":  true,
+                                     "title":  "Con la bendición de nuestras familias",
+                                     "body":  "Te invitamos a celebrar con nosotros este día tan especial. Tu presencia hará nuestro momento aún más inolvidable."
+                                 },
+                     "countdown":  {
+                                       "enabled":  true
+                                   },
+                     "details":  {
+                                     "enabled":  true
+                                 },
+                     "schedule":  {
+                                      "enabled":  true,
+                                      "items":  [
+                                                    {
+                                                        "time":  "5:00 PM",
+                                                        "title":  "Ceremonia"
+                                                    },
+                                                    {
+                                                        "time":  "6:30 PM",
+                                                        "title":  "Recepción"
+                                                    },
+                                                    {
+                                                        "time":  "8:00 PM",
+                                                        "title":  "Cena"
+                                                    },
+                                                    {
+                                                        "time":  "9:30 PM",
+                                                        "title":  "Fiesta"
+                                                    }
+                                                ]
+                                  },
+                     "story":  {
+                                   "enabled":  true,
+                                   "title":  "Nuestra historia",
+                                   "subtitle":  "Cómo sucedió",
+                                   "items":  [
+                                                 {
+                                                     "title":  "Cómo nos conocimos",
+                                                     "text":  "Nos conocimos en un momento inesperado...",
+                                                     "image":  "assets/story/story1.jpg",
+                                                     "alt":  "Cómo nos conocimos"
+                                                 },
+                                                 {
+                                                     "title":  "La propuesta",
+                                                     "text":  "Llegó un instante inolvidable...",
+                                                     "image":  "assets/story/story2.jpg",
+                                                     "alt":  "La propuesta"
+                                                 },
+                                                 {
+                                                     "title":  "Nuestro gran día",
+                                                     "text":  "Gracias por acompañarnos...",
+                                                     "image":  "assets/story/story3.jpg",
+                                                     "alt":  "Nuestro gran día"
+                                                 }
+                                             ]
+                               },
+                     "gallery":  {
+                                     "enabled":  true,
+                                     "items":  [
+                                                   {
+                                                       "thumb":  "assets/thumbs/gallery1.jpg",
+                                                       "full":  "assets/full/gallery1.jpg",
+                                                       "alt":  "Andrea \u0026 Luis"
+                                                   },
+                                                   {
+                                                       "thumb":  "assets/thumbs/gallery2.jpg",
+                                                       "full":  "assets/full/gallery2.jpg",
+                                                       "alt":  "Momentos"
+                                                   },
+                                                   {
+                                                       "thumb":  "assets/thumbs/gallery3.jpg",
+                                                       "full":  "assets/full/gallery3.jpg",
+                                                       "alt":  "Momentos"
+                                                   },
+                                                   {
+                                                       "thumb":  "assets/thumbs/gallery4.jpg",
+                                                       "full":  "assets/full/gallery4.jpg",
+                                                       "alt":  "Momentos"
+                                                   },
+                                                   {
+                                                       "thumb":  "assets/thumbs/gallery5.jpg",
+                                                       "full":  "assets/full/gallery5.jpg",
+                                                       "alt":  "Momentos"
+                                                   },
+                                                   {
+                                                       "thumb":  "assets/thumbs/gallery6.jpg",
+                                                       "full":  "assets/full/gallery6.jpg",
+                                                       "alt":  "Momentos"
+                                                   }
+                                               ]
+                                 },
+                     "dressCode":  {
+                                       "enabled":  true,
+                                       "text":  "Formal elegante"
+                                   },
+                     "gifts":  {
+                                   "enabled":  true,
+                                   "title":  "Mesa de regalos",
+                                   "intro":  "Tu presencia es nuestro mejor regalo, pero si deseas tener un detalle con nosotros, aquí te compartimos opciones:",
+                                   "options":  [
+                                                   {
+                                                       "type":  "sobre",
+                                                       "label":  "Lluvia de sobres",
+                                                       "text":  "Habrá un espacio disponible el día del evento."
+                                                   },
+                                                   {
+                                                       "type":  "transfer",
+                                                       "label":  "Transferencia bancaria",
+                                                       "bank":  "BBVA",
+                                                       "holder":  "Valeria López",
+                                                       "clabe":  "012345678901234567"
+                                                   },
+                                                   {
+                                                       "type":  "wishlist",
+                                                       "label":  "Wishlist",
+                                                       "url":  "https://www.amazon.com/"
+                                                   }
+                                               ]
+                               },
+                     "rsvp":  {
+                                  "enabled":  true,
+                                  "channel":  "whatsapp",
+                                  "number":  "528991234567",
+                                  "message":  "¡Hola! Confirmo mi asistencia a la boda de Valeria \u0026 Mateo. Mi nombre es: "
+                              },
+                     "music":  {
+                                   "enabled":  true,
+                                   "src":  "assets/audio.mp3",
+                                   "label":  "Reproducir música"
+                               }
+                 },
+    "media":  {
+
+              },
+    "branding":  {
+                     "footerText":  "Diseñado por Your Digital Event"
+                 }
+}
