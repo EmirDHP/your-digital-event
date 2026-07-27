@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#FBF8F2" />
+  <title>Alba · Demo ficticia de bautizo</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+  >
+  <link
+    rel="stylesheet"
+    href="../../../src/invitation/themes/alba/theme.css"
+  />
+</head>
+<body class="locked">
+  <div id="gate" class="gate">
+    <div class="gate-card">
+      <div class="gate-sub" id="gateDate">22 · Mayo · 2027</div>
+      <h1 class="gate-title" id="gateNames">Emma Sofía</h1>
+      <button class="btn btn-primary" id="openInvite" type="button">
+        Abrir invitación
+      </button>
+      <div class="gate-hint">Demo ficticia · desliza para explorar</div>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">Your Digital Event</div>
+    <nav class="nav" aria-label="Navegación de la invitación">
+      <a href="#personas">Personas</a>
+      <a href="#detalles">Detalles</a>
+      <a href="#historia">Historia</a>
+      <a href="#itinerario">Itinerario</a>
+      <a href="#galeria">Galería</a>
+      <a href="#regalos">Regalos</a>
+      <a href="#rsvp">RSVP</a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="hero" id="inicio">
+      <div class="hero-bg" id="heroBg"></div>
+      <div class="hero-content">
+        <div class="chip" id="tagline">Mi bautizo</div>
+        <h2 class="hero-names" id="heroNames">Emma Sofía</h2>
+        <div class="gold-divider"></div>
+        <div class="hero-meta">
+          <span id="heroDate">22 · Mayo · 2027</span>
+          <span class="dot">•</span>
+          <span id="heroTime">12:00 PM</span>
+        </div>
+
+        <div class="countdown" aria-label="Cuenta regresiva">
+          <div class="cd-item">
+            <div class="cd-num" id="cdDays">--</div>
+            <div class="cd-lbl">Días</div>
+          </div>
+          <div class="cd-item">
+            <div class="cd-num" id="cdHours">--</div>
+            <div class="cd-lbl">Horas</div>
+          </div>
+          <div class="cd-item">
+            <div class="cd-num" id="cdMins">--</div>
+            <div class="cd-lbl">Min</div>
+          </div>
+          <div class="cd-item">
+            <div class="cd-num" id="cdSecs">--</div>
+            <div class="cd-lbl">Seg</div>
+          </div>
+        </div>
+
+        <div class="hero-cta">
+          <a class="btn btn-ghost" href="#detalles">Ver detalles</a>
+          <a class="btn btn-primary" href="#rsvp">Confirmar</a>
+        </div>
+
+        <div class="music" id="musicWrap" hidden>
+          <button class="btn btn-ghost" id="musicBtn" type="button">
+            Reproducir melodía
+          </button>
+          <audio id="musicAudio" preload="none"></audio>
+        </div>
+      </div>
+    </section>
+
+    <section class="section message">
+      <h3 class="section-title" id="msgTitle">Un día lleno de luz</h3>
+      <p class="section-text" id="msgBody">
+        Contenido completamente ficticio para demostrar el tema Alba.
+      </p>
+    </section>
+
+    <section
+      class="section"
+      id="personas"
+      hidden
+      aria-labelledby="peopleTitle"
+    >
+      <h3 class="section-title" id="peopleTitle">Con la bendición de</h3>
+      <p class="section-text" id="peopleIntro">
+        Personas ficticias creadas únicamente para esta demostración
+      </p>
+      <div class="cards people-groups" id="peopleGroups"></div>
+    </section>
+
+    <section class="section" id="detalles">
+      <h3 class="section-title">Detalles</h3>
+      <div class="cards">
+        <article class="card">
+          <div class="card-label">Fecha</div>
+          <div class="card-value" id="detailsDate">22 · Mayo · 2027</div>
+        </article>
+        <article class="card">
+          <div class="card-label">Hora</div>
+          <div class="card-value" id="detailsTime">12:00 PM</div>
+        </article>
+        <article class="card">
+          <div class="card-label">Lugar</div>
+          <div class="card-value" id="detailsVenue">
+            Capilla de la Luz · espacio de demostración
+          </div>
+          <div class="card-sub" id="detailsAddr">
+            Dirección ficticia para esta demo
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="itinerario">
+      <h3 class="section-title">Itinerario</h3>
+      <div class="timeline" id="scheduleList"></div>
+    </section>
+
+    <section class="section" id="historia" hidden>
+      <div class="story-head">
+        <div class="chip story-chip" id="storySubtitle">
+          Una celebración que comienza
+        </div>
+        <h3 class="section-title" id="storyTitle">Pequeños momentos</h3>
+      </div>
+      <div class="story-list" id="storyList"></div>
+    </section>
+
+    <section class="section" id="galeria">
+      <h3 class="section-title">Galería</h3>
+      <div class="gallery" id="galleryGrid"></div>
+      <div class="muted">
+        Imágenes originales generadas exclusivamente para esta demo.
+      </div>
+    </section>
+
+    <section class="section">
+      <h3 class="section-title">Código de vestimenta</h3>
+      <div class="pill" id="dressCode">
+        Tonos claros · elegante y cómodo
+      </div>
+    </section>
+
+    <section class="section" id="regalos" hidden>
+      <h3 class="section-title" id="giftsTitle">Un detalle para Emma</h3>
+      <p class="section-text" id="giftsIntro">
+        Esta opción es únicamente demostrativa.
+      </p>
+      <div class="gift-grid" id="giftsList"></div>
+    </section>
+
+    <section class="section" id="rsvp">
+      <h3 class="section-title">Confirmación</h3>
+      <p class="section-text">
+        Prueba el flujo de WhatsApp con información ficticia:
+      </p>
+      <div class="rsvp-box">
+        <input
+          id="guestName"
+          class="input"
+          type="text"
+          placeholder="Escribe un nombre de prueba..."
+          autocomplete="name"
+          inputmode="text"
+          enterkeyhint="send"
+        />
+        <button class="btn btn-primary" id="rsvpBtn" type="button">
+          Confirmar por WhatsApp
+        </button>
+        <div class="muted small">
+          Se utiliza un número inválido y claramente ficticio para la demo.
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div id="footerText">
+        Alba · Demo ficticia de Your Digital Event
+      </div>
+    </footer>
+  </main>
+
+  <div id="lightbox" class="lightbox" hidden aria-hidden="true">
+    <div class="lb-backdrop" id="lbBackdrop"></div>
+    <div
+      class="lb-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Galería"
+    >
+      <button
+        class="lb-btn lb-close"
+        id="lbClose"
+        type="button"
+        aria-label="Cerrar"
+      >×</button>
+      <button
+        class="lb-btn lb-prev"
+        id="lbPrev"
+        type="button"
+        aria-label="Anterior"
+      >‹</button>
+      <button
+        class="lb-btn lb-next"
+        id="lbNext"
+        type="button"
+        aria-label="Siguiente"
+      >›</button>
+      <img id="lbImg" class="lb-img" alt="Foto ampliada" />
+      <div class="lb-caption" id="lbCaption"></div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

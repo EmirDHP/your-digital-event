@@ -1,5 +1,23 @@
-const KNOWN_THEMES = new Set(["aura", "eclipse", "ivory", "blush", "regal"]);
+const KNOWN_THEMES = new Set([
+  "aura",
+  "eclipse",
+  "ivory",
+  "blush",
+  "regal",
+  "alba",
+  "celeste"
+]);
 const EVENT_TYPES = new Set(["wedding", "xv", "event"]);
+const EVENT_SUBTYPES = new Set([
+  "baptism",
+  "babyShower",
+  "presentation",
+  "firstBirthday",
+  "communion",
+  "kidsParty",
+  "familyCelebration",
+  "other"
+]);
 const SECTION_NAMES = [
   "message",
   "countdown",
@@ -14,6 +32,7 @@ const SECTION_NAMES = [
 ];
 const GIFT_TYPES = new Set(["sobre", "transfer", "wishlist"]);
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const LOCATION_KIND_PATTERN = /^[a-z][A-Za-z0-9-]*$/;
 const ISO_PATTERN =
   /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2})(?:\.\d{1,3})?)?(Z|[+-]\d{2}:\d{2})$/;
 
@@ -171,6 +190,23 @@ function validateEvent(event, errors, warnings){
   if (!EVENT_TYPES.has(value.type)){
     addIssue(errors, "event.type", "INVALID_ENUM", "El tipo de evento no es válido.");
   }
+  if (value.subtype !== undefined){
+    if (!EVENT_SUBTYPES.has(value.subtype)){
+      addIssue(
+        errors,
+        "event.subtype",
+        "INVALID_ENUM",
+        "El subtipo de evento no es válido."
+      );
+    }else if (value.type !== "event"){
+      addIssue(
+        errors,
+        "event.subtype",
+        "INVALID_SUBTYPE_FOR_TYPE",
+        "event.subtype solo puede utilizarse cuando event.type es \"event\"."
+      );
+    }
+  }
   requireText(value.names, "event.names", errors);
 
   const date = requireObject(value.date, "event.date", errors);
@@ -230,8 +266,99 @@ function validateSections(sections, errors){
     requireText(message.body, "sections.message.body", errors);
   }
 
+  if (value.people !== undefined){
+    const people = validateEnabledSection(
+      value.people,
+      "sections.people",
+      errors
+    );
+    if (people?.enabled){
+      requireText(people.title, "sections.people.title", errors);
+      requireText(people.intro, "sections.people.intro", errors);
+      validateItems(
+        people.groups,
+        "sections.people.groups",
+        errors,
+        (group, groupPath) => {
+          const currentGroup = requireObject(group, groupPath, errors);
+          if (!currentGroup) return;
+          requireText(currentGroup.label, `${groupPath}.label`, errors);
+          validateItems(
+            currentGroup.people,
+            `${groupPath}.people`,
+            errors,
+            (person, personPath) => {
+              const currentPerson = requireObject(person, personPath, errors);
+              if (!currentPerson) return;
+              requireText(currentPerson.name, `${personPath}.name`, errors);
+              if (currentPerson.relation !== undefined){
+                requireText(
+                  currentPerson.relation,
+                  `${personPath}.relation`,
+                  errors
+                );
+              }
+              if (currentPerson.image !== undefined){
+                validateAssetPath(
+                  currentPerson.image,
+                  `${personPath}.image`,
+                  errors
+                );
+              }
+            }
+          );
+        }
+      );
+    }
+  }
+
   validateEnabledSection(value.countdown, "sections.countdown", errors);
-  validateEnabledSection(value.details, "sections.details", errors);
+
+  const details = validateEnabledSection(
+    value.details,
+    "sections.details",
+    errors
+  );
+  if (details?.locations !== undefined){
+    validateItems(
+      details.locations,
+      "sections.details.locations",
+      errors,
+      (item, path) => {
+        const location = requireObject(item, path, errors);
+        if (!location) return;
+
+        if (
+          !requireText(location.kind, `${path}.kind`, errors) ||
+          !LOCATION_KIND_PATTERN.test(location.kind)
+        ){
+          if (hasText(location.kind)){
+            addIssue(
+              errors,
+              `${path}.kind`,
+              "INVALID_LOCATION_KIND",
+              "Debe usar un identificador simple que comience con una letra minúscula."
+            );
+          }
+        }
+
+        requireText(location.label, `${path}.label`, errors);
+        requireText(location.name, `${path}.name`, errors);
+        requireText(location.dateDisplay, `${path}.dateDisplay`, errors);
+        requireText(location.timeDisplay, `${path}.timeDisplay`, errors);
+        requireText(location.address, `${path}.address`, errors);
+
+        if (location.mapsUrl !== undefined){
+          validateUrl(
+            location.mapsUrl,
+            `${path}.mapsUrl`,
+            errors,
+            { httpsOnly: true }
+          );
+        }
+      }
+    );
+  }
 
   const schedule = validateEnabledSection(value.schedule, "sections.schedule", errors);
   if (schedule?.enabled){

@@ -1,0 +1,47 @@
+{
+  "id": "alba",
+  "name": "Alba",
+  "themeColor": "#FBF8F2",
+  "css": "theme.css",
+  "fonts": [
+    {
+      "rel": "preconnect",
+      "href": "https://fonts.googleapis.com"
+    },
+    {
+      "rel": "preconnect",
+      "href": "https://fonts.gstatic.com",
+      "crossorigin": true
+    },
+    {
+      "rel": "stylesheet",
+      "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+    }
+  ],
+  "runtimeOptions": {
+    "revealProfile": {
+      "baseSelectors": [
+        ".hero-bg",
+        ".hero-content",
+        ".message",
+        "#personas",
+        "#detalles",
+        "#itinerario",
+        "#historia",
+        "#galeria",
+        "#regalos",
+        "#rsvp",
+        ".footer"
+      ],
+      "itemSelectors": [
+        ".countdown .cd-item",
+        "#personas .people-group",
+        ".cards .card",
+        ".timeline .tl-item",
+        "#historia .story-card",
+        ".gallery .gimg",
+        "#regalos .gift-card"
+      ]
+    }
+  }
+}

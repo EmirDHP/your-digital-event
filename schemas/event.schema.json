@@ -30,7 +30,7 @@
     },
     "theme": {
       "type": "string",
-      "enum": ["aura", "eclipse", "ivory", "blush", "regal"]
+      "enum": ["aura", "eclipse", "ivory", "blush", "regal", "alba", "celeste"]
     },
     "event": {
       "$ref": "#/$defs/event"
@@ -70,6 +70,19 @@
           "type": "string",
           "enum": ["wedding", "xv", "event"]
         },
+        "subtype": {
+          "type": "string",
+          "enum": [
+            "baptism",
+            "babyShower",
+            "presentation",
+            "firstBirthday",
+            "communion",
+            "kidsParty",
+            "familyCelebration",
+            "other"
+          ]
+        },
         "names": {
           "type": "string",
           "minLength": 1
@@ -83,7 +96,19 @@
         "venue": {
           "$ref": "#/$defs/venue"
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": ["subtype"]
+          },
+          "then": {
+            "properties": {
+              "type": { "const": "event" }
+            }
+          }
+        }
+      ]
     },
     "date": {
       "type": "object",
@@ -145,11 +170,14 @@
         "message": {
           "$ref": "#/$defs/messageSection"
         },
+        "people": {
+          "$ref": "#/$defs/peopleSection"
+        },
         "countdown": {
           "$ref": "#/$defs/toggleSection"
         },
         "details": {
-          "$ref": "#/$defs/toggleSection"
+          "$ref": "#/$defs/detailsSection"
         },
         "schedule": {
           "$ref": "#/$defs/scheduleSection"
@@ -184,6 +212,64 @@
         }
       }
     },
+    "detailsSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "locations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/location"
+          }
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "label",
+        "name",
+        "dateDisplay",
+        "timeDisplay",
+        "address"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "pattern": "^[a-z][A-Za-z0-9-]*$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dateDisplay": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timeDisplay": {
+          "type": "string",
+          "minLength": 1
+        },
+        "address": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mapsUrl": {
+          "$ref": "#/$defs/httpsUrl"
+        }
+      }
+    },
     "messageSection": {
       "type": "object",
       "additionalProperties": false,
@@ -214,6 +300,80 @@
           }
         }
       ]
+    },
+    "peopleSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "intro": {
+          "type": "string",
+          "minLength": 1
+        },
+        "groups": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/peopleGroup"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "enabled": { "const": true }
+            },
+            "required": ["enabled"]
+          },
+          "then": {
+            "required": ["title", "intro", "groups"]
+          }
+        }
+      ]
+    },
+    "peopleGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "people"],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "people": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/person"
+          }
+        }
+      }
+    },
+    "person": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "relation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "image": {
+          "$ref": "#/$defs/safeAssetPath"
+        }
+      }
     },
     "scheduleSection": {
       "type": "object",

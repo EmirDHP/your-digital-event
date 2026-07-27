@@ -34,6 +34,7 @@ const previousOutputRoot = path.join(
 const minimumNodeVersion = [18, 18, 0];
 
 const navigationItems = [
+  { section: "people", href: "#personas", label: "Personas" },
   { section: "details", href: "#detalles", label: "Detalles" },
   { section: "story", href: "#historia", label: "Historia" },
   { section: "schedule", href: "#itinerario", label: "Itinerario" },
@@ -210,6 +211,11 @@ function collectAssetReferences(config){
   add(config.media?.hero?.src);
   add(config.sections?.music?.src);
 
+  for (const group of config.sections?.people?.groups || []){
+    for (const person of group.people || []){
+      add(person.image);
+    }
+  }
   for (const item of config.sections?.story?.items || []){
     add(item.image);
   }
@@ -412,6 +418,8 @@ function renderEventHtml(shell, config, manifest){
     TIME_DISPLAY: escapeHtml(config.event.date.timeDisplay),
     MESSAGE_TITLE: escapeHtml(sections.message.title || ""),
     MESSAGE_BODY: escapeHtml(sections.message.body || ""),
+    PEOPLE_TITLE: escapeHtml(sections.people?.title || ""),
+    PEOPLE_INTRO: escapeHtml(sections.people?.intro || ""),
     VENUE_NAME: escapeHtml(config.event.venue.name),
     VENUE_ADDRESS: escapeHtml(config.event.venue.address),
     STORY_TITLE: escapeHtml(sections.story.title || ""),

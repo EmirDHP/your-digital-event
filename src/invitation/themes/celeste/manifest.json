@@ -1,0 +1,38 @@
+{
+  "id": "celeste",
+  "name": "Celeste",
+  "themeColor": "#F1F3EF",
+  "css": "theme.css",
+  "fonts": [
+    {
+      "rel": "preconnect",
+      "href": "https://fonts.googleapis.com"
+    },
+    {
+      "rel": "preconnect",
+      "href": "https://fonts.gstatic.com",
+      "crossorigin": true
+    },
+    {
+      "rel": "stylesheet",
+      "href": "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap"
+    }
+  ],
+  "runtimeOptions": {
+    "revealProfile": {
+      "baseSelectors": [
+        ".hero-content",
+        ".message",
+        "#personas",
+        "#detalles",
+        "#rsvp",
+        ".footer"
+      ],
+      "itemSelectors": [
+        ".countdown .cd-item",
+        "#personas .people-group",
+        "#detalles .card"
+      ]
+    }
+  }
+}

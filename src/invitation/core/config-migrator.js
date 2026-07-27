@@ -27,7 +27,15 @@ function slugify(value){
 
 function getTheme(template){
   const value = String(template || "").toLowerCase();
-  const knownThemes = ["aura", "eclipse", "ivory", "blush", "regal"];
+  const knownThemes = [
+    "aura",
+    "eclipse",
+    "ivory",
+    "blush",
+    "regal",
+    "alba",
+    "celeste"
+  ];
   return knownThemes.find((theme) => value === theme || value.startsWith(`${theme}-`))
     || value;
 }
@@ -79,6 +87,36 @@ function migrateLegacyGallery(rawGallery){
   return {
     enabled: items.length > 0,
     ...(items.length > 0 ? { items } : {})
+  };
+}
+
+function migrateLegacyPeople(rawPeople){
+  const people = asObject(rawPeople);
+  const groups = asArray(people.groups).map((group) => {
+    const sourceGroup = asObject(group);
+    return {
+      label: sourceGroup.label ?? "",
+      people: asArray(sourceGroup.people).map((person) => {
+        const sourcePerson = asObject(person);
+        return {
+          name: sourcePerson.name ?? "",
+          ...(hasText(sourcePerson.relation)
+            ? { relation: sourcePerson.relation }
+            : {}),
+          ...(hasText(sourcePerson.image)
+            ? { image: sourcePerson.image }
+            : {})
+        };
+      })
+    };
+  });
+  const enabled = people.enabled !== false && groups.length > 0;
+
+  return {
+    enabled,
+    ...(hasText(people.title) ? { title: people.title } : {}),
+    ...(hasText(people.intro) ? { intro: people.intro } : {}),
+    ...(groups.length > 0 ? { groups } : {})
   };
 }
 
@@ -148,6 +186,9 @@ function migrateLegacyConfig(rawConfig){
     theme: getTheme(raw.template || raw.theme),
     event: {
       type: getEventType(raw.eventType),
+      ...(hasText(raw.eventSubtype || raw.subtype)
+        ? { subtype: raw.eventSubtype || raw.subtype }
+        : {}),
       names,
       tagline: raw.tagline ?? "",
       date: {
@@ -168,6 +209,7 @@ function migrateLegacyConfig(rawConfig){
         ...(hasText(raw.messageTitle) ? { title: raw.messageTitle } : {}),
         ...(hasText(raw.messageBody) ? { body: raw.messageBody } : {})
       },
+      people: migrateLegacyPeople(raw.people),
       countdown: {
         enabled: hasText(raw.dateISO)
       },
@@ -226,4 +268,3 @@ export function migrateConfig(rawConfig){
 
   throw new UnsupportedSchemaVersionError(version);
 }
-

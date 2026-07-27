@@ -8,7 +8,6 @@ import {
   setDocumentTitle,
   setHeroImage
 } from "./dom.js";
-import { getSafeHttpUrl } from "./external-url.js";
 import {
   setElementAvailability,
   setSectionAvailability
@@ -18,6 +17,8 @@ import { startCountdown } from "./countdown.js";
 import { initMusic, tryAutoplayMusic } from "./music.js";
 import { initHeroParallax, initRevealAnimations } from "./reveal.js";
 import { renderSchedule } from "../sections/schedule.js";
+import { renderPeople } from "../sections/people.js";
+import { renderDetails } from "../sections/details.js";
 import { renderStory } from "../sections/story.js";
 import { getGalleryItems, renderGallery } from "../sections/gallery.js";
 import { createLightboxController } from "../sections/lightbox.js";
@@ -63,19 +64,17 @@ async function initializeInvitation(options){
     sections.message.enabled
   );
 
-  safeText(byId("detailsDate"), sections.details.dateDisplay);
-  safeText(byId("detailsTime"), sections.details.timeDisplay);
-  safeText(byId("detailsVenue"), sections.details.venueName);
-  safeText(byId("detailsAddr"), sections.details.addressLine);
-  setSectionAvailability("detalles", sections.details.enabled);
+  const peopleRendered = renderPeople(sections.people);
+  setSectionAvailability(
+    "personas",
+    sections.people.enabled && peopleRendered
+  );
 
-  const mapsLink = byId("mapsLink");
-  if (mapsLink){
-    const mapsUrl = getSafeHttpUrl(sections.details.mapsUrl);
-    mapsLink.hidden = !mapsUrl;
-    if (mapsUrl) mapsLink.href = mapsUrl;
-    else mapsLink.removeAttribute("href");
-  }
+  const detailsRendered = renderDetails(sections.details);
+  setSectionAvailability(
+    "detalles",
+    sections.details.enabled && detailsRendered
+  );
 
   safeText(byId("dressCode"), sections.dressCode.text);
   setElementAvailability(

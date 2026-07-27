@@ -278,6 +278,16 @@ function collectConfigAssetReferences(config){
   add(config.media?.hero?.src, "media.hero.src");
   add(config.sections?.music?.src, "sections.music.src");
 
+  for (const [groupIndex, group] of (
+    config.sections?.people?.groups || []
+  ).entries()){
+    for (const [personIndex, person] of (group.people || []).entries()){
+      add(
+        person.image,
+        `sections.people.groups.${groupIndex}.people.${personIndex}.image`
+      );
+    }
+  }
   for (const [index, item] of (config.sections?.story?.items || []).entries()){
     add(item.image, `sections.story.items.${index}.image`);
   }

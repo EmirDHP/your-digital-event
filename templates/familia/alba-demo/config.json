@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "slug": "alba-demo",
+  "theme": "alba",
+  "event": {
+    "type": "event",
+    "subtype": "baptism",
+    "names": "Emma Sofía",
+    "tagline": "Mi bautizo",
+    "date": {
+      "iso": "2027-05-22T12:00:00-06:00",
+      "timeZone": "America/Matamoros",
+      "display": "22 · Mayo · 2027",
+      "timeDisplay": "12:00 PM"
+    },
+    "venue": {
+      "name": "Capilla de la Luz · espacio de demostración",
+      "address": "Dirección ficticia para esta demo"
+    }
+  },
+  "sections": {
+    "message": {
+      "enabled": true,
+      "title": "Un día lleno de luz",
+      "body": "Contenido completamente ficticio para demostrar el tema Alba. Acompáñanos a celebrar un momento muy especial."
+    },
+    "people": {
+      "enabled": true,
+      "title": "Con la bendición de",
+      "intro": "Personas ficticias creadas únicamente para esta demostración",
+      "groups": [
+        {
+          "label": "Mis padres",
+          "people": [
+            {
+              "name": "Mariana Demo",
+              "relation": "Mamá"
+            },
+            {
+              "name": "Andrés Demo",
+              "relation": "Papá"
+            }
+          ]
+        },
+        {
+          "label": "Mis padrinos",
+          "people": [
+            {
+              "name": "Lucía Demo",
+              "relation": "Madrina"
+            },
+            {
+              "name": "Mateo Demo",
+              "relation": "Padrino"
+            }
+          ]
+        }
+      ]
+    },
+    "countdown": {
+      "enabled": true
+    },
+    "details": {
+      "enabled": true
+    },
+    "schedule": {
+      "enabled": true,
+      "items": [
+        {
+          "time": "12:00 PM",
+          "title": "Ceremonia"
+        },
+        {
+          "time": "1:15 PM",
+          "title": "Recepción de invitados"
+        },
+        {
+          "time": "2:00 PM",
+          "title": "Comida de celebración"
+        },
+        {
+          "time": "3:30 PM",
+          "title": "Fotografías y convivencia"
+        }
+      ]
+    },
+    "story": {
+      "enabled": true,
+      "title": "Pequeños momentos",
+      "subtitle": "Una celebración que comienza",
+      "items": [
+        {
+          "title": "La espera",
+          "text": "Cada detalle fue preparado con ternura para compartir este día.",
+          "image": "assets/gallery/full/gallery3.jpg",
+          "alt": "Zapatos y vestido marfil de bautizo en una composición de demostración"
+        },
+        {
+          "title": "Una mañana luminosa",
+          "text": "La luz suave inspira una celebración serena, cercana y familiar.",
+          "image": "assets/gallery/full/gallery4.jpg",
+          "alt": "Arco de vitral claro con flores blancas y una rama de olivo"
+        },
+        {
+          "title": "El comienzo",
+          "text": "Un símbolo delicado acompaña este momento ficticio de bienvenida.",
+          "image": "assets/gallery/full/gallery2.jpg",
+          "alt": "Vela marfil de bautizo junto a lino y hojas de olivo"
+        }
+      ]
+    },
+    "gallery": {
+      "enabled": true,
+      "items": [
+        {
+          "thumb": "assets/gallery/thumbs/gallery1.jpg",
+          "full": "assets/hero/hero.jpg",
+          "alt": "Retrato editorial ficticio de una bebé con vestido marfil"
+        },
+        {
+          "thumb": "assets/gallery/thumbs/gallery2.jpg",
+          "full": "assets/gallery/full/gallery2.jpg",
+          "alt": "Vela marfil sobre una composición de lino y olivo"
+        },
+        {
+          "thumb": "assets/gallery/thumbs/gallery3.jpg",
+          "full": "assets/gallery/full/gallery3.jpg",
+          "alt": "Zapatos de bebé y vestido marfil con flores blancas"
+        },
+        {
+          "thumb": "assets/gallery/thumbs/gallery4.jpg",
+          "full": "assets/gallery/full/gallery4.jpg",
+          "alt": "Luz suave atravesando un arco de vitral en tonos claros"
+        }
+      ]
+    },
+    "dressCode": {
+      "enabled": true,
+      "text": "Tonos claros · elegante y cómodo"
+    },
+    "gifts": {
+      "enabled": true,
+      "title": "Un detalle para Emma",
+      "intro": "Tu presencia es el mejor regalo. Esta opción es únicamente demostrativa.",
+      "options": [
+        {
+          "type": "sobre",
+          "label": "Lluvia de buenos deseos",
+          "text": "En esta demo, los mejores regalos son tus palabras y buenos deseos."
+        }
+      ]
+    },
+    "rsvp": {
+      "enabled": true,
+      "channel": "whatsapp",
+      "number": "0000000000",
+      "message": "DEMO · Confirmo mi asistencia ficticia al bautizo de Emma Sofía. Mi nombre es: "
+    },
+    "music": {
+      "enabled": true,
+      "src": "assets/audio/alba-demo.wav",
+      "label": "Reproducir melodía"
+    }
+  },
+  "media": {
+    "hero": {
+      "src": "assets/hero/hero.jpg",
+      "alt": "Retrato editorial ficticio de una bebé con vestido marfil"
+    }
+  },
+  "branding": {
+    "footerText": "Alba · Demo ficticia de Your Digital Event"
+  }
+}

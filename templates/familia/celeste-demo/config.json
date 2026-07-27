@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "slug": "celeste-demo",
+  "theme": "celeste",
+  "event": {
+    "type": "event",
+    "subtype": "baptism",
+    "names": "Mateo Emiliano",
+    "tagline": "Mi bautizo",
+    "date": {
+      "iso": "2027-08-14T11:30:00-06:00",
+      "timeZone": "America/Matamoros",
+      "display": "14 · Agosto · 2027",
+      "timeDisplay": "11:30 AM"
+    },
+    "venue": {
+      "name": "Capilla de la Esperanza · demo",
+      "address": "Ubicación ficticia para demostración",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=ubicacion+ficticia+de+demostracion"
+    }
+  },
+  "sections": {
+    "message": {
+      "enabled": true,
+      "title": "Un día pequeño, un recuerdo inmenso",
+      "body": "Con mucha alegría te invitamos a compartir este momento especial. Todo el contenido de esta invitación es ficticio y se utiliza únicamente como demostración."
+    },
+    "people": {
+      "enabled": true,
+      "title": "Con el cariño de",
+      "intro": "Nombres ficticios creados para esta demo",
+      "groups": [
+        {
+          "label": "Mis padres",
+          "people": [
+            {
+              "name": "Ana Demo"
+            },
+            {
+              "name": "Daniel Demo"
+            }
+          ]
+        },
+        {
+          "label": "Mis padrinos",
+          "people": [
+            {
+              "name": "Elena Demo"
+            },
+            {
+              "name": "Gabriel Demo"
+            }
+          ]
+        }
+      ]
+    },
+    "countdown": {
+      "enabled": true
+    },
+    "details": {
+      "enabled": true
+    },
+    "schedule": {
+      "enabled": false
+    },
+    "story": {
+      "enabled": false
+    },
+    "gallery": {
+      "enabled": false
+    },
+    "dressCode": {
+      "enabled": false
+    },
+    "gifts": {
+      "enabled": false
+    },
+    "rsvp": {
+      "enabled": true,
+      "channel": "whatsapp",
+      "number": "0000000000",
+      "message": "DEMO · Confirmo mi asistencia ficticia al bautizo de Mateo Emiliano. Mi nombre es: "
+    },
+    "music": {
+      "enabled": false
+    }
+  },
+  "media": {},
+  "branding": {
+    "footerText": "Celeste · Demo ficticia de Your Digital Event"
+  }
+}

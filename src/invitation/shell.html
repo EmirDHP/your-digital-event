@@ -79,12 +79,23 @@
         </section>
 <!-- ENDIF:message -->
 
+<!-- IF:people -->
+        <!-- Important people -->
+        <section class="section" id="personas" hidden aria-labelledby="peopleTitle">
+        <h3 class="section-title" id="peopleTitle">{{PEOPLE_TITLE}}</h3>
+        <p class="section-text" id="peopleIntro">{{PEOPLE_INTRO}}</p>
+        <div class="cards people-groups" id="peopleGroups">
+            <!-- JS inject -->
+        </div>
+        </section>
+<!-- ENDIF:people -->
+
 <!-- IF:details -->
         <!-- Details -->
         <section class="section" id="detalles">
         <h3 class="section-title">Detalles</h3>
 
-        <div class="cards">
+        <div class="cards details-list" id="detailsList">
             <article class="card">
             <div class="card-label">Fecha</div>
             <div class="card-value" id="detailsDate">{{DATE_DISPLAY}}</div>

@@ -117,7 +117,7 @@ function renderCollection(title, items){
 }
 
 async function main(){
-  const type = document.body.getAttribute("data-type"); // "Boda", "XV", "Eventos"
+  const type = document.body.getAttribute("data-type"); // "Boda", "XV", "Evento"
   const title = document.body.getAttribute("data-title") || "Templates";
 
   $("pageTitle").textContent = title;

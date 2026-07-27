@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#F1F3EF" />
+  <title>Celeste · Demo compacta de bautizo</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap"
+  >
+  <link
+    rel="stylesheet"
+    href="../../../src/invitation/themes/celeste/theme.css"
+  />
+</head>
+<body class="locked">
+  <div id="gate" class="gate">
+    <div class="gate-card">
+      <div class="gate-sub" id="gateDate">14 · Agosto · 2027</div>
+      <h1 class="gate-title" id="gateNames">Mateo Emiliano</h1>
+      <button class="btn btn-primary" id="openInvite" type="button">
+        Abrir invitación
+      </button>
+      <div class="gate-hint">Desliza para explorar</div>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Ir al inicio de la invitación">
+      Your Digital Event
+    </a>
+    <nav class="nav" aria-label="Navegación de la invitación">
+      <a href="#personas">Personas</a>
+      <a href="#detalles">Detalles</a>
+      <a href="#rsvp">RSVP</a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="hero" id="inicio">
+      <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="chip" id="tagline">Mi bautizo</div>
+        <h2 class="hero-names" id="heroNames">Mateo Emiliano</h2>
+        <div class="gold-divider" aria-hidden="true"></div>
+        <div class="hero-meta">
+          <span id="heroDate">14 · Agosto · 2027</span>
+          <span class="dot" aria-hidden="true">•</span>
+          <span id="heroTime">11:30 AM</span>
+        </div>
+
+        <div class="countdown" aria-label="Cuenta regresiva">
+          <div class="cd-item">
+            <div class="cd-num" id="cdDays">--</div>
+            <div class="cd-lbl">Días</div>
+          </div>
+          <div class="cd-item">
+            <div class="cd-num" id="cdHours">--</div>
+            <div class="cd-lbl">Horas</div>
+          </div>
+          <div class="cd-item">
+            <div class="cd-num" id="cdMins">--</div>
+            <div class="cd-lbl">Min</div>
+          </div>
+          <div class="cd-item">
+            <div class="cd-num" id="cdSecs">--</div>
+            <div class="cd-lbl">Seg</div>
+          </div>
+        </div>
+
+        <div class="hero-cta">
+          <a class="btn btn-ghost" href="#detalles">Ver detalles</a>
+          <a class="btn btn-primary" href="#rsvp">Confirmar</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section message">
+      <h3 class="section-title" id="msgTitle">
+        Un día pequeño, un recuerdo inmenso
+      </h3>
+      <p class="section-text" id="msgBody">
+        Con mucha alegría te invitamos a compartir este momento especial.
+        Todo el contenido de esta invitación es ficticio.
+      </p>
+    </section>
+
+    <section
+      class="section people-section"
+      id="personas"
+      hidden
+      aria-labelledby="peopleTitle"
+    >
+      <h3 class="section-title" id="peopleTitle">Con el cariño de</h3>
+      <p class="section-text" id="peopleIntro">
+        Nombres ficticios creados para esta demo
+      </p>
+      <div class="cards people-groups" id="peopleGroups"></div>
+    </section>
+
+    <section class="section details-section" id="detalles">
+      <h3 class="section-title">Detalles</h3>
+      <div class="cards">
+        <article class="card">
+          <div class="card-label">Fecha</div>
+          <div class="card-value" id="detailsDate">
+            14 · Agosto · 2027
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-label">Hora</div>
+          <div class="card-value" id="detailsTime">11:30 AM</div>
+        </article>
+        <article class="card">
+          <div class="card-label">Lugar</div>
+          <div class="card-value" id="detailsVenue">
+            Capilla de la Esperanza · demo
+          </div>
+          <div class="card-sub" id="detailsAddr">
+            Ubicación ficticia para demostración
+          </div>
+          <a
+            class="link"
+            id="mapsLink"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Ver ubicación</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section rsvp-section" id="rsvp">
+      <h3 class="section-title">Confirmación</h3>
+      <p class="section-text">
+        Confirma por WhatsApp con un mensaje rápido:
+      </p>
+      <div class="rsvp-box">
+        <input
+          id="guestName"
+          class="input"
+          type="text"
+          placeholder="Escribe tu nombre..."
+          autocomplete="name"
+          inputmode="text"
+          enterkeyhint="send"
+        />
+        <button class="btn btn-primary" id="rsvpBtn" type="button">
+          Confirmar por WhatsApp
+        </button>
+        <div class="muted small">
+          Se abrirá WhatsApp con el mensaje listo para enviar.
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div id="footerText">
+        Celeste · Demo ficticia de Your Digital Event
+      </div>
+    </footer>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

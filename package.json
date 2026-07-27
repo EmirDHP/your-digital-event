@@ -6,9 +6,10 @@
     "node": ">=18.18.0"
   },
   "scripts": {
-    "build": "node scripts/build-events.mjs",
+    "build": "npm run build:site",
     "build:events": "node scripts/build-events.mjs",
-    "check": "node scripts/check-events.mjs",
-    "validate": "npm run build && npm run check"
+    "build:site": "node scripts/build-site.mjs",
+    "check": "node scripts/check-invitation-contract.mjs && node scripts/check-events.mjs",
+    "validate": "npm run build:events && npm run check"
   }
 }

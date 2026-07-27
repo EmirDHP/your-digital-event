@@ -3,6 +3,9 @@ node_modules/
 
 # Salida generada
 dist/
+site-dist/
+.site-dist-build-*/
+.site-dist-previous-*/
 
 # Migraciones temporales y respaldos locales
 .migration-staging/

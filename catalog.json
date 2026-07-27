@@ -61,6 +61,28 @@
       "demoUrl": "templates/xv/regal-demo/",
       "cover": "assets/covers/regal.jpg",
       "featured": false
+    },
+    {
+      "id": "alba",
+      "name": "Alba",
+      "type": "Evento",
+      "collection": "Bautizos y celebraciones familiares",
+      "style": ["Clásico", "Familiar", "Delicado"],
+      "description": "Diseño delicado y elegante para bautizos y celebraciones familiares.",
+      "demoUrl": "templates/familia/alba-demo/",
+      "cover": "assets/covers/alba.jpg",
+      "featured": false
+    },
+    {
+      "id": "celeste",
+      "name": "Celeste",
+      "type": "Evento",
+      "collection": "Bautizos y celebraciones familiares",
+      "style": ["Compacto", "Delicado", "Familiar"],
+      "description": "Invitación compacta inspirada en una tarjeta impresa, ideal para bautizos y celebraciones familiares.",
+      "demoUrl": "templates/familia/celeste-demo/",
+      "cover": "assets/covers/celeste.jpg",
+      "featured": false
     }
   ]
 }

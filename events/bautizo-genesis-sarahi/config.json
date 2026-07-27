@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "slug": "bautizo-genesis-sarahi",
+  "theme": "celeste",
+  "event": {
+    "type": "event",
+    "subtype": "baptism",
+    "names": "Genesis Sarahi",
+    "tagline": "Mi bautizo",
+    "date": {
+      "iso": "2026-10-10T14:00:00-05:00",
+      "timeZone": "America/Matamoros",
+      "display": "10 · Octubre · 2026",
+      "timeDisplay": "2:00 PM"
+    },
+    "venue": {
+      "name": "Parroquia San Martin De Porres",
+      "address": "Heroes de la Reforma 104, Lic Benito Juárez, 88790 Reynosa, Tamps.",
+      "mapsUrl": "https://maps.app.goo.gl/1anRQxP62hfExGSz7"
+    }
+  },
+  "sections": {
+    "message": {
+      "enabled": true,
+      "title": "Con la bendición de Dios y de mi familia",
+      "body": "Con mucha alegría queremos invitarte a celebrar el bautizo de Genesis Sarahi. Acompáñanos en la ceremonia religiosa y después comparte con nosotros este momento tan especial en Quinta Roma."
+    },
+    "people": {
+      "enabled": true,
+      "title": "Con la bendición de",
+      "intro": "Mis padres y mi madrina",
+      "groups": [
+        {
+          "label": "Mis padres",
+          "people": [
+            {
+              "name": "Xochitl Hernández"
+            },
+            {
+              "name": "Octavio Martínez"
+            }
+          ]
+        },
+        {
+          "label": "Mi madrina",
+          "people": [
+            {
+              "name": "Wendy Hernández"
+            }
+          ]
+        }
+      ]
+    },
+    "countdown": {
+      "enabled": true
+    },
+    "details": {
+      "enabled": true,
+      "locations": [
+        {
+          "kind": "ceremony",
+          "label": "Ceremonia religiosa",
+          "name": "Parroquia San Martin De Porres",
+          "dateDisplay": "10 · Octubre · 2026",
+          "timeDisplay": "2:00 PM",
+          "address": "Heroes de la Reforma 104, Lic Benito Juárez, 88790 Reynosa, Tamps.",
+          "mapsUrl": "https://maps.app.goo.gl/1anRQxP62hfExGSz7"
+        },
+        {
+          "kind": "reception",
+          "label": "Recepción",
+          "name": "Quinta Roma",
+          "dateDisplay": "10 · Octubre · 2026",
+          "timeDisplay": "5:00 PM",
+          "address": "Gasoducto 340, Roma, 88755 Reynosa, Tamps.",
+          "mapsUrl": "https://maps.app.goo.gl/Drb6rweZ7B7kX62j8"
+        }
+      ]
+    },
+    "schedule": {
+      "enabled": false
+    },
+    "story": {
+      "enabled": false
+    },
+    "gallery": {
+      "enabled": false
+    },
+    "dressCode": {
+      "enabled": false
+    },
+    "gifts": {
+      "enabled": false
+    },
+    "rsvp": {
+      "enabled": false
+    },
+    "music": {
+      "enabled": false
+    }
+  },
+  "media": {},
+  "branding": {
+    "footerText": "Diseñado por Your Digital Event"
+  }
+}
