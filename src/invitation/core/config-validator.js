@@ -33,6 +33,8 @@ const SECTION_NAMES = [
 const GIFT_TYPES = new Set(["sobre", "transfer", "wishlist"]);
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const LOCATION_KIND_PATTERN = /^[a-z][A-Za-z0-9-]*$/;
+const PALETTE_KEY_PATTERN = /^[a-z][A-Za-z0-9]*$/;
+const HEX_COLOR_PATTERN = /^#[0-9A-Fa-f]{6}(?:[0-9A-Fa-f]{2})?$/;
 const ISO_PATTERN =
   /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2})(?:\.\d{1,3})?)?(Z|[+-]\d{2}:\d{2})$/;
 
@@ -459,7 +461,85 @@ function validateMedia(media, errors){
 
 function validateBranding(branding, errors){
   const value = requireObject(branding, "branding", errors);
-  if (value) requireText(value.footerText, "branding.footerText", errors);
+  if (!value) return;
+
+  requireText(value.footerText, "branding.footerText", errors);
+  if (value.palette !== undefined){
+    const palette = requireObject(value.palette, "branding.palette", errors);
+    if (palette){
+      const entries = Object.entries(palette);
+      if (entries.length === 0){
+        addIssue(
+          errors,
+          "branding.palette",
+          "EMPTY_PALETTE",
+          "Debe declarar al menos un color."
+        );
+      }
+
+      entries.forEach(([key, color]) => {
+        if (!PALETTE_KEY_PATTERN.test(key)){
+          addIssue(
+            errors,
+            `branding.palette.${key}`,
+            "INVALID_PALETTE_KEY",
+            "La clave de paleta no es válida."
+          );
+        }
+        if (!HEX_COLOR_PATTERN.test(String(color || ""))){
+          addIssue(
+            errors,
+            `branding.palette.${key}`,
+            "INVALID_COLOR",
+            "Debe ser un color hexadecimal de seis u ocho dígitos."
+          );
+        }
+      });
+    }
+  }
+
+  if (value.header !== undefined){
+    const header = requireObject(value.header, "branding.header", errors);
+    if (header && typeof header.enabled !== "boolean"){
+      addIssue(
+        errors,
+        "branding.header.enabled",
+        "REQUIRED_FIELD",
+        "Debe declarar enabled como booleano."
+      );
+    }
+  }
+
+  if (value.footer !== undefined){
+    const footer = requireObject(value.footer, "branding.footer", errors);
+    if (!footer) return;
+    if (typeof footer.enabled !== "boolean"){
+      addIssue(
+        errors,
+        "branding.footer.enabled",
+        "REQUIRED_FIELD",
+        "Debe declarar enabled como booleano."
+      );
+    }
+    if (footer.enabled === true){
+      requireText(footer.label, "branding.footer.label", errors);
+      requireText(footer.name, "branding.footer.name", errors);
+      validateUrl(
+        footer.url,
+        "branding.footer.url",
+        errors,
+        { httpsOnly: true }
+      );
+      if (typeof footer.openInNewTab !== "boolean"){
+        addIssue(
+          errors,
+          "branding.footer.openInNewTab",
+          "REQUIRED_FIELD",
+          "Debe declarar openInNewTab como booleano."
+        );
+      }
+    }
+  }
 }
 
 export function validateConfig(config){

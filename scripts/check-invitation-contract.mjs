@@ -156,6 +156,26 @@ async function validateSchemaDocument(){
       "#/$defs/httpsUrl",
     "location.mapsUrl debe aceptar exclusivamente HTTPS."
   );
+  assert(
+    schema.$defs?.branding?.properties?.palette?.$ref ===
+      "#/$defs/themePalette",
+    "branding.palette debe referenciar el contrato de paleta versionado."
+  );
+  assert(
+    schema.$defs?.themePalette?.additionalProperties?.$ref ===
+      "#/$defs/hexColor",
+    "Los valores de branding.palette deben ser colores hexadecimales."
+  );
+  assert(
+    schema.$defs?.branding?.properties?.header?.$ref ===
+      "#/$defs/brandingHeader",
+    "branding.header debe usar su contrato opcional."
+  );
+  assert(
+    schema.$defs?.branding?.properties?.footer?.$ref ===
+      "#/$defs/brandingFooter",
+    "branding.footer debe usar su contrato opcional."
+  );
 }
 
 function validateRuntimeContract(){
@@ -177,9 +197,65 @@ function validateRuntimeContract(){
   const celeste = createBaseConfig();
   celeste.theme = "celeste";
   celeste.event.subtype = "baptism";
+  celeste.branding.palette = {
+    canvas: "#FBF8EE",
+    accent: "#F6EDB3"
+  };
   assert(
     validateConfig(celeste).valid,
-    "El runtime debe aceptar Celeste para celebraciones familiares."
+    "El runtime debe aceptar Celeste con una paleta válida por evento."
+  );
+  assert(
+    normalizeConfig(celeste).branding.palette.accent === "#F6EDB3",
+    "El normalizador debe conservar la paleta validada."
+  );
+
+  const invalidPalette = clone(celeste);
+  invalidPalette.branding.palette.accent = "amarillo";
+  assert(
+    hasError(
+      validateConfig(invalidPalette),
+      "branding.palette.accent",
+      "INVALID_COLOR"
+    ),
+    "El runtime debe rechazar colores de paleta que no sean hexadecimales."
+  );
+
+  const customBranding = clone(celeste);
+  customBranding.branding.header = { enabled: false };
+  customBranding.branding.footer = {
+    enabled: true,
+    label: "Diseñado por",
+    name: "Your Digital Event",
+    url: "https://www.your-digital-event.com/",
+    openInNewTab: true
+  };
+  assert(
+    validateConfig(customBranding).valid,
+    "Header desactivado y footer enlazado deben ser una configuración válida."
+  );
+  assert(
+    normalizeConfig(customBranding).branding.header.enabled === false &&
+      normalizeConfig(customBranding).branding.footer.openInNewTab === true,
+    "El normalizador debe conservar la configuración declarativa de branding."
+  );
+
+  const disabledFooter = clone(celeste);
+  disabledFooter.branding.footer = { enabled: false };
+  assert(
+    validateConfig(disabledFooter).valid,
+    "Un footer desactivado no debe exigir contenido ni dejar de ser válido."
+  );
+
+  const unsafeFooter = clone(customBranding);
+  unsafeFooter.branding.footer.url = "javascript:alert(1)";
+  assert(
+    hasError(
+      validateConfig(unsafeFooter),
+      "branding.footer.url",
+      "INVALID_URL_PROTOCOL"
+    ),
+    "El footer debe rechazar URLs que no sean HTTPS."
   );
 
   for (const subtype of expectedSubtypes){

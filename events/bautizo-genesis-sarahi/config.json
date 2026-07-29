@@ -5,8 +5,8 @@
   "event": {
     "type": "event",
     "subtype": "baptism",
-    "names": "Genesis Sarahi",
-    "tagline": "Mi bautizo",
+    "names": "Génesis Sarahí",
+    "tagline": "Mi bautizo y cumpleaños",
     "date": {
       "iso": "2026-10-10T14:00:00-05:00",
       "timeZone": "America/Matamoros",
@@ -23,12 +23,12 @@
     "message": {
       "enabled": true,
       "title": "Con la bendición de Dios y de mi familia",
-      "body": "Con mucha alegría queremos invitarte a celebrar el bautizo de Genesis Sarahi. Acompáñanos en la ceremonia religiosa y después comparte con nosotros este momento tan especial en Quinta Roma."
+      "body": "Con mucha alegría queremos invitarte a celebrar el bautizo y cumpleaños de Génesis Sarahí. Acompáñanos en la ceremonia religiosa y después comparte con nosotros este momento tan especial en Quinta Roma."
     },
     "people": {
       "enabled": true,
       "title": "Con la bendición de",
-      "intro": "Mis padres y mi madrina",
+      "intro": "Mis padres y mis padrinos",
       "groups": [
         {
           "label": "Mis padres",
@@ -42,10 +42,13 @@
           ]
         },
         {
-          "label": "Mi madrina",
+          "label": "Mis padrinos",
           "people": [
             {
               "name": "Wendy Hernández"
+            },
+            {
+              "name": "Erick Santiago"
             }
           ]
         }
@@ -101,6 +104,45 @@
   },
   "media": {},
   "branding": {
-    "footerText": "Diseñado por Your Digital Event"
+    "footerText": "Diseñado por Your Digital Event",
+    "header": {
+      "enabled": false
+    },
+    "footer": {
+      "enabled": true,
+      "label": "Diseñado por",
+      "name": "Your Digital Event",
+      "url": "https://www.your-digital-event.com/",
+      "openInNewTab": true
+    },
+    "palette": {
+      "canvas": "#FBF8EE",
+      "paper": "#FFFEF9",
+      "surface": "#FFFFFF",
+      "accent": "#F6EDB3",
+      "accentSoft": "#F9F3CF",
+      "petal": "#F7F1D7",
+      "botanical": "#DFE7D8",
+      "line": "#E8D990",
+      "angelLeft": "#9FAF93",
+      "angelRight": "#C4AF62",
+      "daisyLeft": "#D8C765",
+      "daisyRight": "#C9BE82",
+      "ink": "#34302D",
+      "muted": "#69645D",
+      "focus": "#8B7A35",
+      "navAccent": "#D8C765",
+      "softLine": "#E8D990",
+      "dot": "#B5A34E",
+      "action": "#D8C765",
+      "actionHover": "#C6B654",
+      "actionText": "#34302D",
+      "heroStart": "#FFFEF9",
+      "heroEnd": "#FBF8EE",
+      "gateStart": "#F9F3CF",
+      "gateEnd": "#FFFEF9",
+      "botanicalLine": "#A8B59D",
+      "heroBotanicalLine": "#A8B59D"
+    }
   }
 }

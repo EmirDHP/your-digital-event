@@ -16,6 +16,8 @@ import { initGate, scheduleHeroRevealFallback } from "./gate.js";
 import { startCountdown } from "./countdown.js";
 import { initMusic, tryAutoplayMusic } from "./music.js";
 import { initHeroParallax, initRevealAnimations } from "./reveal.js";
+import { applyThemePalette } from "./theme-palette.js";
+import { renderBranding } from "./branding.js";
 import { renderSchedule } from "../sections/schedule.js";
 import { renderPeople } from "../sections/people.js";
 import { renderDetails } from "../sections/details.js";
@@ -49,6 +51,12 @@ async function initializeInvitation(options){
   const sections = config.sections;
   const lightbox = createLightboxController({ getItems: getGalleryItems });
 
+  applyThemePalette(
+    config.branding?.palette,
+    options.paletteVariables
+  );
+  renderBranding(config.branding);
+
   safeText(byId("gateNames"), config.names);
   safeText(byId("gateDate"), sections.details.dateDisplay);
 
@@ -81,8 +89,6 @@ async function initializeInvitation(options){
     byId("dressCode")?.closest(".section"),
     sections.dressCode.enabled
   );
-  safeText(byId("footerText"), config.branding?.footerText);
-
   setDocumentTitle(config.names);
   setHeroImage(config.heroImage, {
     preserveEmptyState: Boolean(options.preserveEmptyHeroState)

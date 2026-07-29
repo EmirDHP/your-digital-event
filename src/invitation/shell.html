@@ -10,6 +10,7 @@
 {{FONT_LINKS}}
 
     <link rel="stylesheet" href="{{THEME_CSS_HREF}}" />
+{{THEME_PALETTE_STYLE}}
 </head>
 <body class="locked">
     <!-- Intro Gate -->
@@ -22,6 +23,7 @@
         </div>
     </div>
 
+<!-- IF:header -->
     <!-- Top Nav -->
     <header class="topbar">
         <div class="brand">Your Digital Event</div>
@@ -29,6 +31,7 @@
 {{NAVIGATION}}
         </nav>
     </header>
+<!-- ENDIF:header -->
 
     <!-- Hero -->
     <main class="main">
@@ -195,9 +198,11 @@
         </section>
 <!-- ENDIF:rsvp -->
 
-        <footer class="footer">
-        <div id="footerText">{{FOOTER_TEXT}}</div>
+<!-- IF:footer -->
+        <footer class="footer" id="eventFooter">
+{{FOOTER_CONTENT}}
         </footer>
+<!-- ENDIF:footer -->
     </main>
 
 <!-- IF:gallery -->

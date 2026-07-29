@@ -19,6 +19,35 @@
     }
   ],
   "runtimeOptions": {
+    "paletteVariables": {
+      "canvas": "--celeste-canvas",
+      "paper": "--celeste-paper",
+      "surface": "--celeste-pearl",
+      "accent": "--celeste-blue",
+      "accentSoft": "--celeste-blue-soft",
+      "petal": "--celeste-rose",
+      "botanical": "--celeste-sage",
+      "line": "--celeste-sand",
+      "angelLeft": "--celeste-angel-blue",
+      "angelRight": "--celeste-angel-champagne",
+      "daisyLeft": "--celeste-daisy-left",
+      "daisyRight": "--celeste-daisy-right",
+      "ink": "--celeste-ink",
+      "muted": "--celeste-muted",
+      "focus": "--celeste-focus",
+      "navAccent": "--celeste-nav-accent",
+      "softLine": "--celeste-soft-line",
+      "dot": "--celeste-dot",
+      "action": "--celeste-button-bg",
+      "actionHover": "--celeste-button-hover",
+      "actionText": "--celeste-button-text",
+      "heroStart": "--celeste-hero-start",
+      "heroEnd": "--celeste-hero-end",
+      "gateStart": "--celeste-gate-start",
+      "gateEnd": "--celeste-gate-end",
+      "botanicalLine": "--celeste-botanical-line",
+      "heroBotanicalLine": "--celeste-hero-botanical-line"
+    },
     "revealProfile": {
       "baseSelectors": [
         ".hero-content",

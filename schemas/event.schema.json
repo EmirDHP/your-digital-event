@@ -61,6 +61,20 @@
       "format": "uri",
       "pattern": "^https://"
     },
+    "hexColor": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}(?:[0-9A-Fa-f]{2})?$"
+    },
+    "themePalette": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "pattern": "^[a-z][A-Za-z0-9]*$"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/hexColor"
+      }
+    },
     "event": {
       "type": "object",
       "additionalProperties": false,
@@ -771,8 +785,64 @@
         "footerText": {
           "type": "string",
           "minLength": 1
+        },
+        "palette": {
+          "$ref": "#/$defs/themePalette"
+        },
+        "header": {
+          "$ref": "#/$defs/brandingHeader"
+        },
+        "footer": {
+          "$ref": "#/$defs/brandingFooter"
         }
       }
+    },
+    "brandingHeader": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "brandingFooter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "openInNewTab": {
+          "type": "boolean"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "enabled": { "const": true }
+            },
+            "required": ["enabled"]
+          },
+          "then": {
+            "required": ["label", "name", "url", "openInNewTab"]
+          }
+        }
+      ]
     }
   }
 }

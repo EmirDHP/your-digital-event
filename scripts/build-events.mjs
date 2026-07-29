@@ -16,6 +16,7 @@ import { fileURLToPath } from "node:url";
 
 import { migrateConfig } from "../src/invitation/core/config-migrator.js";
 import { validateConfig } from "../src/invitation/core/config-validator.js";
+import { resolveThemePalette } from "../src/invitation/core/theme-palette.js";
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDirectory, "..");
@@ -172,6 +173,42 @@ function renderNavigation(sections){
       `        <a href="${item.href}">${escapeHtml(item.label)}</a>`
     )
     .join("\n");
+}
+
+function renderThemePaletteStyle(config, manifest){
+  const declarations = resolveThemePalette(
+    config.branding?.palette,
+    manifest.runtimeOptions?.paletteVariables
+  );
+  if (declarations.length === 0) return "";
+
+  const properties = declarations
+    .map(({ variable, color }) => `      ${variable}:${color};`)
+    .join("\n");
+  return `    <style id="event-theme-palette">\n    :root{\n${properties}\n    }\n    </style>`;
+}
+
+function renderFooterContent(branding){
+  const footer = branding?.footer;
+  if (!footer || footer.enabled !== true){
+    return `        <div id="footerText">${escapeHtml(branding.footerText)}</div>`;
+  }
+
+  const target = footer.openInNewTab ? ' target="_blank"' : "";
+  const rel = footer.openInNewTab ? ' rel="noopener noreferrer"' : "";
+  return [
+    "        <a",
+    '        class="brand-signature"',
+    `        href="${escapeHtml(footer.url)}"`,
+    `        aria-label="Visitar ${escapeHtml(footer.name)}"${target}${rel}`,
+    "        >",
+    `            <span class="brand-signature-label">${escapeHtml(footer.label)}</span>`,
+    '            <span class="brand-signature-brand">',
+    `            <span class="brand-signature-name">${escapeHtml(footer.name)}</span>`,
+    '            <span class="brand-signature-dots" aria-hidden="true"><span></span><span></span></span>',
+    "            </span>",
+    "        </a>"
+  ].join("\n");
 }
 
 function renderFontLinks(fonts){
@@ -336,6 +373,26 @@ async function loadTheme(themeId){
   ){
     throw new Error(`Las opciones de runtime del tema ${themeId} no son válidas.`);
   }
+  const paletteVariables = manifest.runtimeOptions?.paletteVariables;
+  if (paletteVariables !== undefined){
+    if (
+      !paletteVariables ||
+      typeof paletteVariables !== "object" ||
+      Array.isArray(paletteVariables)
+    ){
+      throw new Error(`El contrato de paleta del tema ${themeId} no es válido.`);
+    }
+    for (const [key, variable] of Object.entries(paletteVariables)){
+      if (
+        !/^[a-z][A-Za-z0-9]*$/.test(key) ||
+        !/^--[a-z][a-z0-9-]*$/.test(String(variable || ""))
+      ){
+        throw new Error(
+          `El contrato de paleta del tema ${themeId} contiene una declaración inválida.`
+        );
+      }
+    }
+  }
   if (!isSafeRelativePath(manifest.css)){
     throw new Error(`El CSS del tema ${themeId} no usa una ruta segura.`);
   }
@@ -401,6 +458,8 @@ function renderEventHtml(shell, config, manifest){
     ])
   );
   conditions.maps = Boolean(config.event.venue.mapsUrl);
+  conditions.header = config.branding.header?.enabled !== false;
+  conditions.footer = config.branding.footer?.enabled !== false;
 
   const conditionalShell = applySectionConditions(shell, conditions);
   const values = {
@@ -410,6 +469,7 @@ function renderEventHtml(shell, config, manifest){
     FONT_LINKS: renderFontLinks(manifest.fonts),
     THEME_CSS_HREF:
       `../../shared/invitation/themes/${escapeHtml(config.theme)}/theme.css`,
+    THEME_PALETTE_STYLE: renderThemePaletteStyle(config, manifest),
     RUNTIME_HREF: "../../shared/invitation/runtime/core/bootstrap.js",
     NAVIGATION: renderNavigation(sections),
     NAMES: escapeHtml(config.event.names),
@@ -427,7 +487,7 @@ function renderEventHtml(shell, config, manifest){
     DRESS_CODE: escapeHtml(sections.dressCode.text || ""),
     GIFTS_TITLE: escapeHtml(sections.gifts.title || ""),
     GIFTS_INTRO: escapeHtml(sections.gifts.intro || ""),
-    FOOTER_TEXT: escapeHtml(config.branding.footerText),
+    FOOTER_CONTENT: renderFooterContent(config.branding),
     EVENT_CONFIG: escapeJsonForHtml(config),
     THEME_RUNTIME_OPTIONS: escapeJsonForHtml(manifest.runtimeOptions || {})
   };
