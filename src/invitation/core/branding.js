@@ -1,5 +1,12 @@
-import { safeText } from "./dom.js";
 import { getSafeHttpUrl } from "./external-url.js";
+
+const DEFAULT_FOOTER = Object.freeze({
+  enabled: true,
+  label: "Diseñado por",
+  name: "Your Digital Event",
+  url: "https://www.your-digital-event.com/",
+  openInNewTab: true
+});
 
 function asObject(value){
   return value && typeof value === "object" && !Array.isArray(value)
@@ -50,24 +57,24 @@ export function renderBranding(branding){
   const footerElement = document.querySelector(".footer");
   if (!footerElement) return;
 
-  const footer = asObject(value.footer);
+  const configuredFooter = asObject(value.footer);
+  const footer = configuredFooter || DEFAULT_FOOTER;
   const footerEnabled = footer?.enabled !== false;
   footerElement.hidden = !footerEnabled;
   if (!footerEnabled) return;
 
-  if (footer){
-    const signature = createSignature(footer);
-    if (signature){
-      footerElement.replaceChildren(signature);
-      return;
-    }
+  const signature = createSignature(footer);
+  if (signature){
+    footerElement.replaceChildren(signature);
+    return;
   }
 
-  let legacyText = document.getElementById("footerText");
-  if (!legacyText){
-    legacyText = document.createElement("div");
-    legacyText.id = "footerText";
-    footerElement.replaceChildren(legacyText);
+  if (configuredFooter){
+    footerElement.hidden = true;
+    footerElement.replaceChildren();
+    return;
   }
-  safeText(legacyText, value.footerText);
+
+  const fallbackSignature = createSignature(DEFAULT_FOOTER);
+  if (fallbackSignature) footerElement.replaceChildren(fallbackSignature);
 }

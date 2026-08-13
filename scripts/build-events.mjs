@@ -189,10 +189,13 @@ function renderThemePaletteStyle(config, manifest){
 }
 
 function renderFooterContent(branding){
-  const footer = branding?.footer;
-  if (!footer || footer.enabled !== true){
-    return `        <div id="footerText">${escapeHtml(branding.footerText)}</div>`;
-  }
+  const footer = branding?.footer || {
+    enabled: true,
+    label: "Diseñado por",
+    name: "Your Digital Event",
+    url: "https://www.your-digital-event.com/",
+    openInNewTab: true
+  };
 
   const target = footer.openInNewTab ? ' target="_blank"' : "";
   const rel = footer.openInNewTab ? ' rel="noopener noreferrer"' : "";

@@ -32,7 +32,7 @@
       { "thumb": "assets/thumbs/gallery7.jpg", "full": "assets/full/gallery7.jpg", "alt": "Foto 7" },
       { "thumb": "assets/thumbs/gallery8.jpg", "full": "assets/full/gallery8.jpg", "alt": "Foto 8" }
     ],
-  "heroImage": "assets/hero.jpg",
+  "heroImage": "",
   "music": {
     "enabled": true,
     "src": "assets/audio.mp3",

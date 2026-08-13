@@ -760,3 +760,100 @@ body.locked #gate{
   filter: none !important;
   transform: none !important;
 }
+
+/* Shared editorial brand signature */
+.brand-signature{
+  position:relative;
+  display:inline-flex;
+  min-height:48px;
+  padding:6px 12px;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  color:var(--muted);
+  border-radius:12px;
+  cursor:pointer;
+  text-decoration:none;
+  border:1px solid rgba(199,168,106,.11);
+  background:linear-gradient(180deg,rgba(199,168,106,.045),transparent);
+  transition:color 220ms ease, border-color 220ms ease, background-color 220ms ease;
+}
+.brand-signature-label{
+  font-size:.61rem;
+  font-weight:700;
+  line-height:1;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.brand-signature-brand{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.brand-signature-brand::before,
+.brand-signature-brand::after{
+  width:22px;
+  height:1px;
+  content:"";
+  background:linear-gradient(90deg,transparent,var(--accent));
+  opacity:.55;
+}
+.brand-signature-brand::after{
+  background:linear-gradient(90deg,var(--accent),transparent);
+}
+.brand-signature-name{
+  color:var(--fg);
+  font-family:"Cormorant Garamond", Georgia, serif;
+  font-size:1.08rem;
+  font-weight:600;
+}
+.brand-signature-dots{
+  position:relative;
+  display:inline-block;
+  align-items:center;
+  width:22px;
+  height:16px;
+}
+.brand-signature-dots span{
+  position:absolute;
+  top:6px;
+  left:2px;
+  width:18px;
+  height:8px;
+  border:1px solid var(--accent);
+  border-top:0;
+  border-radius:0 0 9px 9px;
+  background:transparent;
+}
+.brand-signature-dots span + span{
+  top:1px;
+  left:8px;
+  width:6px;
+  height:6px;
+  border:0;
+  border-radius:1px;
+  background:var(--accent);
+  box-shadow:-6px 4px 0 -1px var(--accent),6px 4px 0 -1px var(--accent);
+  transform:rotate(45deg);
+}
+.brand-signature:hover{
+  color:var(--fg);
+  border-color:rgba(199,168,106,.27);
+  background-color:rgba(199,168,106,.055);
+}
+.brand-signature:hover .brand-signature-brand::before,
+.brand-signature:hover .brand-signature-brand::after,
+.brand-signature:focus-visible .brand-signature-brand::before,
+.brand-signature:focus-visible .brand-signature-brand::after{
+  opacity:.9;
+}
+.brand-signature:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:4px;
+}
+
+@media (max-width:767px){
+  html{scroll-padding-top:0}
+  .topbar{display:none !important}
+}

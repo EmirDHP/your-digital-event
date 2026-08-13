@@ -1115,3 +1115,98 @@ body{
 .lb-next{
   display: none !important;
 }
+
+/* Shared editorial brand signature */
+.brand-signature{
+  position:relative;
+  display:inline-flex;
+  min-height:48px;
+  padding:6px 12px;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  color:var(--muted);
+  border-radius:12px;
+  cursor:pointer;
+  text-decoration:none;
+  border:1px solid transparent;
+  background:radial-gradient(circle at 84% 50%,rgba(198,168,94,.055),transparent 42%);
+  transition:color 220ms var(--ease), border-color 220ms var(--ease), background-color 220ms var(--ease);
+}
+.brand-signature-label{
+  font-size:.61rem;
+  font-weight:700;
+  line-height:1;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.brand-signature-brand{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.brand-signature-name{
+  position:relative;
+  color:var(--fg);
+  font-family:"Cormorant Garamond", Georgia, serif;
+  font-size:1.08rem;
+  font-weight:600;
+}
+.brand-signature-name::after{
+  position:absolute;
+  right:8%;
+  bottom:-5px;
+  left:8%;
+  height:1px;
+  content:"";
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:.35;
+  transform:scaleX(.72);
+  transition:opacity 220ms var(--ease),transform 220ms var(--ease);
+}
+.brand-signature-dots{
+  position:relative;
+  display:inline-block;
+  width:25px;
+  height:18px;
+}
+.brand-signature-dots span{
+  position:absolute;
+  top:1px;
+  left:1px;
+  width:16px;
+  height:16px;
+  border:1px solid var(--gold);
+  border-radius:50%;
+  background:transparent;
+  opacity:.78;
+}
+.brand-signature-dots span + span{
+  top:5px;
+  left:9px;
+  width:15px;
+  height:8px;
+  border-color:rgba(198,168,94,.62);
+  background:var(--bg);
+  opacity:1;
+}
+.brand-signature:hover{
+  color:var(--fg);
+  border-color:rgba(198,168,94,.18);
+  background-color:rgba(198,168,94,.045);
+}
+.brand-signature:hover .brand-signature-name::after,
+.brand-signature:focus-visible .brand-signature-name::after{
+  opacity:.75;
+  transform:scaleX(1);
+}
+.brand-signature:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:4px;
+}
+
+@media (max-width:767px){
+  html{scroll-padding-top:0}
+  .topbar{display:none !important}
+}

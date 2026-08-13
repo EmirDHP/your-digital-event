@@ -599,6 +599,34 @@ async function validateGeneratedEvent(sourceEvent){
     );
   }
 
+  const configuredFooter = config.branding?.footer;
+  const footerEnabled = configuredFooter?.enabled !== false;
+  if (!footerEnabled){
+    if (html.includes('id="eventFooter"')){
+      addError(event, indexFile, "El footer desactivado dejó contenido en el HTML generado.");
+    }
+  }else{
+    const expectedFooter = configuredFooter || {
+      name: "Your Digital Event",
+      url: "https://www.your-digital-event.com/",
+      openInNewTab: true
+    };
+    const signatureChecks = [
+      ['class="brand-signature"', "Falta la firma enlazada del footer."],
+      [`href="${expectedFooter.url}"`, "La URL de la firma del footer no coincide con la configuración."],
+      [`aria-label="Visitar ${expectedFooter.name}"`, "La firma del footer no tiene el aria-label esperado."]
+    ];
+    if (expectedFooter.openInNewTab === true){
+      signatureChecks.push(
+        ['target="_blank"', "La firma del footer no abre en una pestaña nueva."],
+        ['rel="noopener noreferrer"', "La firma del footer no incluye la relación segura esperada."]
+      );
+    }
+    for (const [needle, message] of signatureChecks){
+      if (!html.includes(needle)) addError(event, indexFile, message);
+    }
+  }
+
   const cssEntries = [];
   const scriptEntries = [];
   const references = extractHtmlReferences(html);

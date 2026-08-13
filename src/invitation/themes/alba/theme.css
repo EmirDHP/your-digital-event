@@ -1657,3 +1657,111 @@ a{
     transform: none;
   }
 }
+
+/* Shared editorial brand signature */
+.brand-signature{
+  position:relative;
+  display:inline-flex;
+  min-height:48px;
+  padding:6px 12px;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  color:var(--alba-text-soft);
+  border-radius:12px;
+  cursor:pointer;
+  border:1px solid transparent;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--alba-pearl) 45%,transparent),transparent);
+  text-decoration:none;
+  transition:
+    color var(--alba-transition),
+    border-color var(--alba-transition),
+    background-color var(--alba-transition);
+}
+
+.brand-signature-label{
+  font-family:var(--alba-font-sans);
+  font-size:.61rem;
+  font-weight:700;
+  line-height:1;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.brand-signature-brand{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+
+.brand-signature-name{
+  color:var(--alba-ink);
+  font-family:var(--alba-font-display);
+  font-size:1.12rem;
+  font-weight:650;
+  line-height:1.2;
+}
+
+.brand-signature-dots{
+  position:relative;
+  display:inline-block;
+  align-items:center;
+  width:29px;
+  height:17px;
+}
+
+.brand-signature-dots span{
+  position:absolute;
+  top:2px;
+  left:1px;
+  width:23px;
+  height:12px;
+  border:1px solid var(--alba-champagne);
+  border-right-color:transparent;
+  border-bottom-color:transparent;
+  border-radius:55% 45% 0 0;
+  background:transparent;
+  transform:rotate(-7deg);
+}
+
+.brand-signature-dots span + span{
+  top:7px;
+  left:20px;
+  width:7px;
+  height:4px;
+  border:1px solid color-mix(in srgb,var(--alba-accent-ink) 48%,transparent);
+  border-radius:70% 0 70% 0;
+  background:var(--alba-accent-soft);
+  transform:rotate(-25deg);
+}
+
+.brand-signature:hover{
+  color:var(--alba-ink);
+  border-color:color-mix(in srgb,var(--alba-champagne) 34%,transparent);
+  background-color:color-mix(in srgb,var(--alba-accent) 9%,transparent);
+}
+
+.brand-signature:hover .brand-signature-dots span + span,
+.brand-signature:focus-visible .brand-signature-dots span + span{
+  transform:translateY(-1px) rotate(-18deg);
+}
+
+.brand-signature:focus-visible{
+  outline:2px solid var(--alba-accent-ink);
+  outline-offset:4px;
+}
+
+@media (max-width:767px){
+  html{
+    scroll-padding-top:0;
+  }
+
+  .topbar{
+    display:none !important;
+  }
+
+  .hero{
+    padding-top:clamp(42px,10vw,58px);
+  }
+}

@@ -1507,3 +1507,13 @@ a{
     transform:none;
   }
 }
+
+@media (max-width:767px){
+  html{
+    scroll-padding-top:0;
+  }
+
+  .topbar{
+    display:none !important;
+  }
+}
