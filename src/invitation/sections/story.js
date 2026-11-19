@@ -17,6 +17,10 @@ export function renderStory(story){
   safeText(title, story.title || "Nuestra historia");
   safeText(subtitle, story.subtitle || "Cómo sucedió");
   list.innerHTML = "";
+  const titleLevel = /^H[1-6]$/.test(title.tagName)
+    ? Number(title.tagName.slice(1))
+    : 2;
+  const itemHeadingTag = `h${Math.min(titleLevel + 1, 6)}`;
 
   story.items.forEach((item, index) => {
     const card = document.createElement("article");
@@ -31,7 +35,7 @@ export function renderStory(story){
     card.innerHTML = `
       ${mediaHtml}
       <div class="story-content">
-        <h4 class="story-item-title">${item.title || `Momento ${index + 1}`}</h4>
+        <${itemHeadingTag} class="story-item-title">${item.title || `Momento ${index + 1}`}</${itemHeadingTag}>
         <p class="story-item-text">${item.text || ""}</p>
       </div>
     `;

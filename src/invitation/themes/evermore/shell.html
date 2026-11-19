@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="{{LANG}}">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="{{THEME_COLOR}}" />
+    <title>{{TITLE}}</title>
+{{SOCIAL_META_TAGS}}
+    <link rel="icon" href="data:," />
+{{FONT_LINKS}}
+    <link rel="stylesheet" href="{{THEME_CSS_HREF}}" />
+{{THEME_PALETTE_STYLE}}
+    <noscript><style>body.locked{overflow:auto}.gate{display:none!important}.hero-content{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body class="evermore-page locked">
+    <a class="skip-link" href="#inicio">Saltar a la invitación</a>
+
+    <div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gateNames">
+        <div class="gate-ambience" aria-hidden="true"></div>
+        <div class="envelope-scene">
+            <div class="envelope-card">
+                <div class="envelope-card-ornament">E</div>
+                <p id="gateDate">{{DATE_DISPLAY}}</p>
+                <strong id="gateNames">{{NAMES}}</strong>
+            </div>
+            <div class="envelope">
+                <div class="envelope-back" aria-hidden="true"></div>
+                <div class="envelope-pocket" aria-hidden="true"></div>
+                <div class="envelope-flap" aria-hidden="true"></div>
+                <button id="openInvite" class="wax-seal" type="button" aria-label="Abrir invitación">
+                    <span aria-hidden="true">E</span>
+                </button>
+            </div>
+        </div>
+        <p class="gate-hint">Abre la invitación para comenzar</p>
+    </div>
+
+<!-- IF:header -->
+    <header class="topbar">
+        <a class="brand" href="#inicio" aria-label="Ir al inicio">
+            <span class="brand-mark" aria-hidden="true">E</span>
+            <span>{{NAMES}}</span>
+        </a>
+        <button id="evermoreMenuButton" class="menu-button" type="button" aria-expanded="false" aria-controls="evermoreNavigation">
+            <span class="sr-only">Abrir navegación</span>
+            <span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+        <nav id="evermoreNavigation" class="nav" aria-label="Navegación de la invitación">
+{{NAVIGATION}}
+        </nav>
+    </header>
+<!-- ENDIF:header -->
+
+    <main class="main">
+        <section class="hero" id="inicio">
+            <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+            <div class="paper-suite" aria-hidden="true">
+                <div class="paper-piece paper-piece-map"><span></span></div>
+                <div class="paper-piece paper-piece-note"></div>
+                <div class="paper-piece paper-piece-rsvp">R.S.V.P.</div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-card">
+                    <div class="editorial-kicker" id="tagline">{{TAGLINE}}</div>
+                    <p class="hero-invitation">Tenemos el honor de invitarte a celebrar</p>
+                    <h1 class="hero-names" id="heroNames">{{NAMES}}</h1>
+                    <div class="ornament" aria-hidden="true"><span></span></div>
+                    <div class="hero-meta">
+                        <span id="heroDate">{{DATE_DISPLAY}}</span>
+                        <span class="hero-meta-separator" aria-hidden="true">·</span>
+                        <span id="heroTime">{{TIME_DISPLAY}}</span>
+                    </div>
+
+<!-- IF:countdown -->
+                    <div class="countdown" aria-label="Cuenta regresiva">
+                        <div class="cd-item"><div class="cd-num" id="cdDays">--</div><div class="cd-lbl">Días</div></div>
+                        <div class="cd-item"><div class="cd-num" id="cdHours">--</div><div class="cd-lbl">Horas</div></div>
+                        <div class="cd-item"><div class="cd-num" id="cdMins">--</div><div class="cd-lbl">Min</div></div>
+                        <div class="cd-item"><div class="cd-num" id="cdSecs">--</div><div class="cd-lbl">Seg</div></div>
+                    </div>
+<!-- ENDIF:countdown -->
+
+                    <div class="hero-cta">
+<!-- IF:details -->
+                        <a class="btn btn-ghost" href="#detalles">Ver detalles</a>
+<!-- ENDIF:details -->
+<!-- IF:rsvp -->
+                        <a class="btn btn-primary" href="#rsvp">Confirmar asistencia</a>
+<!-- ENDIF:rsvp -->
+                    </div>
+
+<!-- IF:music -->
+                    <div class="music" id="musicWrap" hidden>
+                        <button class="btn music-button" id="musicBtn" type="button">Reproducir música</button>
+                        <audio id="musicAudio" preload="none"></audio>
+                    </div>
+<!-- ENDIF:music -->
+                </div>
+            </div>
+        </section>
+
+<!-- IF:message -->
+        <section class="section message reveal">
+            <div class="section-number" aria-hidden="true">I</div>
+            <p class="section-eyebrow">Una nota para ti</p>
+            <h2 class="section-title" id="msgTitle">{{MESSAGE_TITLE}}</h2>
+            <p class="section-text" id="msgBody">{{MESSAGE_BODY}}</p>
+        </section>
+<!-- ENDIF:message -->
+
+<!-- IF:people -->
+        <section class="section reveal" id="personas" hidden aria-labelledby="peopleTitle">
+            <p class="section-eyebrow">Con gratitud</p>
+            <h2 class="section-title" id="peopleTitle">{{PEOPLE_TITLE}}</h2>
+            <p class="section-text" id="peopleIntro">{{PEOPLE_INTRO}}</p>
+            <div class="cards people-groups" id="peopleGroups"></div>
+        </section>
+<!-- ENDIF:people -->
+
+<!-- IF:details -->
+        <section class="section details-section reveal" id="detalles">
+            <div class="section-heading">
+                <p class="section-eyebrow">La celebración</p>
+                <h2 class="section-title">Ceremonia &amp; recepción</h2>
+                <p class="section-lead">Dos momentos, una misma historia.</p>
+            </div>
+            <div class="cards details-list" id="detailsList">
+                <article class="card">
+                    <div class="card-label">Fecha</div>
+                    <div class="card-value" id="detailsDate">{{DATE_DISPLAY}}</div>
+                </article>
+                <article class="card">
+                    <div class="card-label">Hora</div>
+                    <div class="card-value" id="detailsTime">{{TIME_DISPLAY}}</div>
+                </article>
+                <article class="card">
+                    <div class="card-label">Lugar</div>
+                    <div class="card-value" id="detailsVenue">{{VENUE_NAME}}</div>
+                    <div class="card-sub" id="detailsAddr">{{VENUE_ADDRESS}}</div>
+<!-- IF:maps -->
+                    <a class="link" id="mapsLink" href="#" target="_blank" rel="noopener noreferrer">Ver ubicación</a>
+<!-- ENDIF:maps -->
+                </article>
+            </div>
+<!-- IF:calendar -->
+            <div class="calendar-action">
+                <a class="btn calendar-link" href="{{CALENDAR_HREF}}" download>
+                    <span class="calendar-icon" aria-hidden="true">16</span>
+                    <span>Agregar al calendario</span>
+                </a>
+                <p>Descarga el recordatorio con la fecha, horario y ubicación del evento.</p>
+            </div>
+<!-- ENDIF:calendar -->
+        </section>
+<!-- ENDIF:details -->
+
+<!-- IF:schedule -->
+        <section class="section schedule-section reveal" id="itinerario">
+            <p class="section-eyebrow">Orden del día</p>
+            <h2 class="section-title">Itinerario</h2>
+            <div class="timeline" id="scheduleList"></div>
+        </section>
+<!-- ENDIF:schedule -->
+
+<!-- IF:story -->
+        <section class="section reveal" id="historia" hidden>
+            <div class="story-head">
+                <div class="editorial-kicker story-chip" id="storySubtitle">{{STORY_SUBTITLE}}</div>
+                <h2 class="section-title" id="storyTitle">{{STORY_TITLE}}</h2>
+            </div>
+            <div class="story-list" id="storyList"></div>
+        </section>
+<!-- ENDIF:story -->
+
+<!-- IF:gallery -->
+        <section class="section gallery-section reveal" id="galeria">
+            <p class="section-eyebrow">Recuerdos</p>
+            <h2 class="section-title">Galería</h2>
+            <div class="gallery" id="galleryGrid"></div>
+        </section>
+<!-- ENDIF:gallery -->
+
+<!-- IF:dressCode -->
+        <section class="section dress-section reveal">
+            <div class="dress-ornament" aria-hidden="true"></div>
+            <p class="section-eyebrow">Etiqueta</p>
+            <h2 class="section-title">Código de vestimenta</h2>
+            <div class="pill" id="dressCode">{{DRESS_CODE}}</div>
+        </section>
+<!-- ENDIF:dressCode -->
+
+<!-- IF:gifts -->
+        <section class="section reveal" id="regalos" hidden>
+            <p class="section-eyebrow">Con cariño</p>
+            <h2 class="section-title" id="giftsTitle">{{GIFTS_TITLE}}</h2>
+            <p class="section-text" id="giftsIntro">{{GIFTS_INTRO}}</p>
+            <div class="gift-grid" id="giftsList"></div>
+        </section>
+<!-- ENDIF:gifts -->
+
+<!-- IF:faq -->
+        <section class="section faq-section reveal" id="faq" hidden aria-labelledby="faqTitle">
+            <p class="section-eyebrow">Información útil</p>
+            <h2 class="section-title" id="faqTitle">Preguntas frecuentes</h2>
+            <p class="section-text" id="faqIntro"></p>
+            <div class="faq-list" id="faqList"></div>
+        </section>
+<!-- ENDIF:faq -->
+
+<!-- IF:rsvp -->
+        <section class="section rsvp-section reveal" id="rsvp">
+            <div class="rsvp-paper">
+                <p class="section-eyebrow">R.S.V.P.</p>
+                <h2 class="section-title">¿Nos acompañas?</h2>
+                <p class="section-text">Confirma por WhatsApp. Tu mensaje quedará listo para enviar.</p>
+                <div class="rsvp-box">
+                    <label class="sr-only" for="guestName">Nombre del invitado</label>
+                    <input id="guestName" class="input" type="text" placeholder="Escribe tu nombre" autocomplete="name" inputmode="text" enterkeyhint="send" />
+                    <button class="btn btn-primary" id="rsvpBtn" type="button">Confirmar por WhatsApp</button>
+                </div>
+            </div>
+        </section>
+<!-- ENDIF:rsvp -->
+
+<!-- IF:footer -->
+        <footer class="footer" id="eventFooter">
+{{FOOTER_CONTENT}}
+        </footer>
+<!-- ENDIF:footer -->
+    </main>
+
+<!-- IF:gallery -->
+    <div id="lightbox" class="lightbox" hidden aria-hidden="true">
+        <div class="lb-backdrop" id="lbBackdrop"></div>
+        <div class="lb-panel" role="dialog" aria-modal="true" aria-label="Galería de fotografías">
+            <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Cerrar">×</button>
+            <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="Anterior">‹</button>
+            <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="Siguiente">›</button>
+            <img id="lbImg" class="lb-img" alt="Fotografía" />
+            <div class="lb-caption" id="lbCaption"></div>
+        </div>
+    </div>
+<!-- ENDIF:gallery -->
+
+    <script type="application/json" id="event-config">{{EVENT_CONFIG}}</script>
+    <script type="application/json" id="theme-runtime-options">{{THEME_RUNTIME_OPTIONS}}</script>
+{{THEME_SCRIPT}}
+    <script type="module" src="{{RUNTIME_HREF}}"></script>
+</body>
+</html>

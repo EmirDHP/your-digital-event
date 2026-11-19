@@ -1,0 +1,45 @@
+{
+  "id": "evermore",
+  "name": "Evermore",
+  "themeColor": "#F2EADB",
+  "css": "theme.css",
+  "shell": "shell.html",
+  "script": "theme.js",
+  "fonts": [
+    {
+      "rel": "preconnect",
+      "href": "https://fonts.googleapis.com"
+    },
+    {
+      "rel": "preconnect",
+      "href": "https://fonts.gstatic.com",
+      "crossorigin": true
+    },
+    {
+      "rel": "stylesheet",
+      "href": "https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Hanken+Grotesk:wght@300;400;500;600&display=swap"
+    }
+  ],
+  "runtimeOptions": {
+    "preserveEmptyHeroState": true,
+    "gateOptions": {
+      "openDelayMs": 1050,
+      "openingClass": "is-opening",
+      "manageModalFocus": true,
+      "focusTargetSelector": "#heroNames"
+    },
+    "revealProfile": {
+      "baseSelectors": [
+        ".section",
+        ".hero-content"
+      ],
+      "itemSelectors": [
+        ".details-list .card",
+        ".timeline .tl-item",
+        ".gallery .gimg",
+        ".faq-item",
+        ".rsvp-box"
+      ]
+    }
+  }
+}

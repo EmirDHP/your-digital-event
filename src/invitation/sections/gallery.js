@@ -33,8 +33,10 @@ export function renderGallery(gallery, { openLightbox } = {}){
     image.loading = "lazy";
 
     button.appendChild(image);
-    button.addEventListener("click", () => {
-      if (typeof openLightbox === "function") openLightbox(index);
+    button.addEventListener("click", (event) => {
+      if (typeof openLightbox === "function"){
+        openLightbox(index, event.currentTarget);
+      }
     });
 
     grid.appendChild(button);

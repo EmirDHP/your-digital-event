@@ -41,6 +41,11 @@ export function initRevealAnimations(profile = {}){
     return;
   }
 
+  if (!("IntersectionObserver" in window)){
+    elements.forEach((element) => element.classList.add("in"));
+    return;
+  }
+
   const observer = new IntersectionObserver((entries) => {
     for (const entry of entries){
       if (!entry.isIntersecting) continue;

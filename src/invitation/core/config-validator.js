@@ -5,7 +5,8 @@ const KNOWN_THEMES = new Set([
   "blush",
   "regal",
   "alba",
-  "celeste"
+  "celeste",
+  "evermore"
 ]);
 const EVENT_TYPES = new Set(["wedding", "xv", "event"]);
 const EVENT_SUBTYPES = new Set([
@@ -213,8 +214,27 @@ function validateEvent(event, errors, warnings){
 
   const date = requireObject(value.date, "event.date", errors);
   if (date){
-    if (!isValidIsoDate(date.iso)){
+    const validStart = isValidIsoDate(date.iso);
+    if (!validStart){
       addIssue(errors, "event.date.iso", "INVALID_DATE", "Debe ser una fecha ISO válida con zona horaria.");
+    }
+    if (date.endIso !== undefined){
+      const validEnd = isValidIsoDate(date.endIso);
+      if (!validEnd){
+        addIssue(
+          errors,
+          "event.date.endIso",
+          "INVALID_DATE",
+          "Debe ser una fecha ISO válida con zona horaria."
+        );
+      }else if (validStart && Date.parse(date.endIso) <= Date.parse(date.iso)){
+        addIssue(
+          errors,
+          "event.date.endIso",
+          "INVALID_DATE_RANGE",
+          "La fecha de finalización debe ser posterior al inicio."
+        );
+      }
     }
     if (!isValidTimeZone(date.timeZone)){
       addIssue(errors, "event.date.timeZone", "INVALID_TIME_ZONE", "Debe ser una zona horaria IANA válida.");
@@ -372,6 +392,22 @@ function validateSections(sections, errors){
     });
   }
 
+  if (value.faq !== undefined){
+    const faq = validateEnabledSection(value.faq, "sections.faq", errors);
+    if (faq?.enabled){
+      requireText(faq.title, "sections.faq.title", errors);
+      if (faq.intro !== undefined){
+        requireText(faq.intro, "sections.faq.intro", errors);
+      }
+      validateItems(faq.items, "sections.faq.items", errors, (item, path) => {
+        const current = requireObject(item, path, errors);
+        if (!current) return;
+        requireText(current.question, `${path}.question`, errors);
+        requireText(current.answer, `${path}.answer`, errors);
+      });
+    }
+  }
+
   const story = validateEnabledSection(value.story, "sections.story", errors);
   if (story?.enabled){
     requireText(story.title, "sections.story.title", errors);
@@ -457,6 +493,25 @@ function validateMedia(media, errors){
   if (!hero) return;
   validateAssetPath(hero.src, "media.hero.src", errors);
   requireText(hero.alt, "media.hero.alt", errors);
+}
+
+function validateSharing(sharing, errors){
+  if (sharing === undefined) return;
+  const value = requireObject(sharing, "sharing", errors);
+  if (!value) return;
+
+  validateUrl(value.url, "sharing.url", errors, { httpsOnly: true });
+  requireText(value.description, "sharing.description", errors);
+
+  if (value.title !== undefined){
+    requireText(value.title, "sharing.title", errors);
+  }
+  if (value.image !== undefined){
+    validateAssetPath(value.image, "sharing.image", errors);
+    requireText(value.imageAlt, "sharing.imageAlt", errors);
+  }else if (value.imageAlt !== undefined){
+    requireText(value.imageAlt, "sharing.imageAlt", errors);
+  }
 }
 
 function validateBranding(branding, errors){
@@ -569,6 +624,7 @@ export function validateConfig(config){
   validateSections(root.sections, errors);
   validateMedia(root.media, errors);
   validateBranding(root.branding, errors);
+  validateSharing(root.sharing, errors);
 
   return {
     valid: errors.length === 0,

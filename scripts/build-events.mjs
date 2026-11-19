@@ -17,6 +17,8 @@ import { fileURLToPath } from "node:url";
 import { migrateConfig } from "../src/invitation/core/config-migrator.js";
 import { validateConfig } from "../src/invitation/core/config-validator.js";
 import { resolveThemePalette } from "../src/invitation/core/theme-palette.js";
+import { createCalendarFile } from "./lib/icalendar.mjs";
+import { createSocialMetadata } from "./lib/social-metadata.mjs";
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDirectory, "..");
@@ -40,6 +42,7 @@ const navigationItems = [
   { section: "story", href: "#historia", label: "Historia" },
   { section: "schedule", href: "#itinerario", label: "Itinerario" },
   { section: "gallery", href: "#galeria", label: "Galería" },
+  { section: "faq", href: "#faq", label: "Preguntas" },
   { section: "gifts", href: "#regalos", label: "Regalos" },
   { section: "rsvp", href: "#rsvp", label: "RSVP" }
 ];
@@ -132,6 +135,32 @@ function escapeJsonForHtml(value){
     .replace(/&/g, "\\u0026")
     .replace(/\u2028/g, "\\u2028")
     .replace(/\u2029/g, "\\u2029");
+}
+
+function renderSocialMetaTags(config){
+  const metadata = createSocialMetadata(config);
+  if (!metadata.available) return "";
+
+  const tags = [
+    ["property", "og:title", metadata.title],
+    ["property", "og:description", metadata.description],
+    ["property", "og:url", metadata.url],
+    ["property", "og:type", metadata.type],
+    ["name", "twitter:card", metadata.twitterCard],
+    ["name", "twitter:title", metadata.title],
+    ["name", "twitter:description", metadata.description]
+  ];
+
+  if (metadata.image){
+    tags.splice(2, 0, ["property", "og:image", metadata.image]);
+    tags.splice(3, 0, ["property", "og:image:alt", metadata.imageAlt]);
+    tags.push(["name", "twitter:image", metadata.image]);
+    tags.push(["name", "twitter:image:alt", metadata.imageAlt]);
+  }
+
+  return tags.map(([attribute, name, content]) =>
+    `    <meta ${attribute}="${escapeHtml(name)}" content="${escapeHtml(content)}" />`
+  ).join("\n");
 }
 
 function applySectionConditions(shell, conditions){
@@ -249,6 +278,7 @@ function collectAssetReferences(config){
   };
 
   add(config.media?.hero?.src);
+  add(config.sharing?.image);
   add(config.sections?.music?.src);
 
   for (const group of config.sections?.people?.groups || []){
@@ -405,7 +435,25 @@ async function loadTheme(themeId){
     throw new Error(`No se encontró el CSS del tema ${themeId}.`);
   }
 
-  return { manifest, themeDirectory, cssPath };
+  const optionalFiles = {};
+  for (const property of ["shell", "script"]){
+    if (manifest[property] === undefined) continue;
+    if (!isSafeRelativePath(manifest[property])){
+      throw new Error(
+        `El archivo ${property} del tema ${themeId} no usa una ruta segura.`
+      );
+    }
+
+    const filePath = path.resolve(themeDirectory, manifest[property]);
+    if (!isInside(themeDirectory, filePath) || !await fileExists(filePath)){
+      throw new Error(
+        `No se encontró el archivo ${property} del tema ${themeId}.`
+      );
+    }
+    optionalFiles[`${property}Path`] = filePath;
+  }
+
+  return { manifest, themeDirectory, cssPath, ...optionalFiles };
 }
 
 async function validateAssets(eventDirectory, config){
@@ -452,7 +500,7 @@ async function validateAssets(eventDirectory, config){
   return { references, unused };
 }
 
-function renderEventHtml(shell, config, manifest){
+function renderEventHtml(shell, config, manifest, { calendarHref = "" } = {}){
   const sections = config.sections;
   const conditions = Object.fromEntries(
     Object.entries(sections).map(([name, section]) => [
@@ -463,15 +511,21 @@ function renderEventHtml(shell, config, manifest){
   conditions.maps = Boolean(config.event.venue.mapsUrl);
   conditions.header = config.branding.header?.enabled !== false;
   conditions.footer = config.branding.footer?.enabled !== false;
+  conditions.calendar = Boolean(calendarHref);
 
   const conditionalShell = applySectionConditions(shell, conditions);
   const values = {
     LANG: escapeHtml(config.language || "es"),
     TITLE: escapeHtml(`Invitación • ${config.event.names}`),
     THEME_COLOR: escapeHtml(manifest.themeColor),
+    SOCIAL_META_TAGS: renderSocialMetaTags(config),
     FONT_LINKS: renderFontLinks(manifest.fonts),
     THEME_CSS_HREF:
       `../../shared/invitation/themes/${escapeHtml(config.theme)}/theme.css`,
+    THEME_SCRIPT: manifest.script
+      ? `    <script type="module" src="../../shared/invitation/themes/${escapeHtml(config.theme)}/${escapeHtml(manifest.script)}"></script>`
+      : "",
+    CALENDAR_HREF: escapeHtml(calendarHref),
     THEME_PALETTE_STYLE: renderThemePaletteStyle(config, manifest),
     RUNTIME_HREF: "../../shared/invitation/runtime/core/bootstrap.js",
     NAVIGATION: renderNavigation(sections),
@@ -560,7 +614,10 @@ async function buildEvent(eventSource, shell, destinationRoot){
     );
   }
 
-  const { manifest } = await loadTheme(config.theme);
+  const { manifest, shellPath: themeShellPath } = await loadTheme(config.theme);
+  const eventShell = themeShellPath
+    ? await readFile(themeShellPath, "utf8")
+    : shell;
   const assets = await validateAssets(eventSource.directory, config);
   const outputEventDirectory = path.join(
     destinationRoot,
@@ -579,12 +636,21 @@ async function buildEvent(eventSource, shell, destinationRoot){
     if (error?.code !== "ENOENT") throw error;
   }
 
-  const html = renderEventHtml(shell, config, manifest);
+  const calendar = createCalendarFile(config);
+  const calendarHref = calendar.available ? `./${calendar.fileName}` : "";
+  const html = renderEventHtml(eventShell, config, manifest, { calendarHref });
   await writeFile(
     path.join(outputEventDirectory, "index.html"),
     `${html.trimEnd()}\n`,
     "utf8"
   );
+  if (calendar.available){
+    await writeFile(
+      path.join(outputEventDirectory, calendar.fileName),
+      calendar.content,
+      "utf8"
+    );
+  }
   await verifyCopiedAssets(
     eventSource.directory,
     outputEventDirectory,

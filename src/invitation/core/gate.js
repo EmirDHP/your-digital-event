@@ -15,6 +15,138 @@ const RETURN_EASING = "cubic-bezier(.22, 1, .36, 1)";
 const SWIPE_EXIT_EASING = "cubic-bezier(.22, 1, .36, 1)";
 const BUTTON_EXIT_EASING = "cubic-bezier(.32, .08, .6, 1)";
 const EXIT_OPACITY_EASING = "cubic-bezier(.5, 0, 1, 1)";
+const FOCUSABLE_SELECTOR = [
+  "a[href]",
+  "button:not([disabled])",
+  "input:not([disabled])",
+  "select:not([disabled])",
+  "textarea:not([disabled])",
+  "[tabindex]:not([tabindex=\"-1\"])"
+].join(",");
+
+function isFocusable(element){
+  return element instanceof HTMLElement &&
+    !element.hidden &&
+    element.getClientRects().length > 0;
+}
+
+function focusElement(element){
+  if (!(element instanceof HTMLElement)) return;
+
+  try{
+    element.focus({ preventScroll: true });
+  }catch{
+    element.focus();
+  }
+}
+
+function createModalFocusController(gate, button, focusTargetSelector){
+  const backgroundStates = Array.from(document.body.children)
+    .filter((element) =>
+      element !== gate &&
+      element instanceof HTMLElement &&
+      !["SCRIPT", "STYLE", "LINK"].includes(element.tagName)
+    )
+    .map((element) => ({
+      element,
+      hadInert: element.hasAttribute("inert")
+    }));
+
+  backgroundStates.forEach(({ element }) => element.setAttribute("inert", ""));
+
+  const previousGateTabIndex = gate.getAttribute("tabindex");
+  gate.setAttribute("tabindex", "-1");
+
+  let released = false;
+  let observer = null;
+
+  const focusGate = () => {
+    const focusable = Array.from(gate.querySelectorAll(FOCUSABLE_SELECTOR))
+      .filter(isFocusable);
+    focusElement(focusable[0] || gate);
+  };
+
+  const focusInvitation = () => {
+    let target = null;
+
+    try{
+      target = document.querySelector(focusTargetSelector || ".main");
+    }catch{
+      target = document.querySelector(".main");
+    }
+
+    if (!(target instanceof HTMLElement)) return;
+
+    const previousTabIndex = target.getAttribute("tabindex");
+    target.setAttribute("tabindex", "-1");
+    focusElement(target);
+
+    target.addEventListener("blur", () => {
+      if (previousTabIndex === null) target.removeAttribute("tabindex");
+      else target.setAttribute("tabindex", previousTabIndex);
+    }, { once: true });
+  };
+
+  const handleKeydown = (event) => {
+    if (event.key !== "Tab" || !gate.isConnected) return;
+
+    const focusable = Array.from(gate.querySelectorAll(FOCUSABLE_SELECTOR))
+      .filter(isFocusable);
+
+    if (focusable.length === 0){
+      event.preventDefault();
+      focusElement(gate);
+      return;
+    }
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const active = document.activeElement;
+
+    if (event.shiftKey && (active === first || !gate.contains(active))){
+      event.preventDefault();
+      focusElement(last);
+    }else if (!event.shiftKey && (active === last || !gate.contains(active))){
+      event.preventDefault();
+      focusElement(first);
+    }
+  };
+
+  const handleFocusIn = (event) => {
+    if (!released && gate.isConnected && !gate.contains(event.target)) focusGate();
+  };
+
+  const release = ({ moveFocus = true } = {}) => {
+    if (released) return;
+    released = true;
+    observer?.disconnect();
+    document.removeEventListener("keydown", handleKeydown, true);
+    document.removeEventListener("focusin", handleFocusIn, true);
+
+    backgroundStates.forEach(({ element, hadInert }) => {
+      if (!hadInert) element.removeAttribute("inert");
+    });
+
+    if (previousGateTabIndex === null) gate.removeAttribute("tabindex");
+    else gate.setAttribute("tabindex", previousGateTabIndex);
+
+    if (moveFocus) focusInvitation();
+  };
+
+  document.addEventListener("keydown", handleKeydown, true);
+  document.addEventListener("focusin", handleFocusIn, true);
+
+  if (typeof MutationObserver === "function"){
+    observer = new MutationObserver(() => {
+      if (!gate.isConnected) release();
+    });
+    observer.observe(document.body, { childList: true });
+  }
+
+  focusElement(button);
+
+  return { focusGate, release };
+}
 
 function supportsTouchInteraction(){
   const coarsePointer = window.matchMedia?.("(any-pointer: coarse)")?.matches;
@@ -43,14 +175,31 @@ export function scheduleHeroRevealFallback(){
   }, 150);
 }
 
-export function initGate({ tryAutoplay } = {}){
+export function initGate({
+  tryAutoplay,
+  openDelayMs = 0,
+  openingClass = "is-opening",
+  manageModalFocus = false,
+  focusTargetSelector = ".main"
+} = {}){
   const gate = byId("gate");
   const button = byId("openInvite");
   if (!gate || !button) return;
   if (initializedGates.has(gate)) return;
 
   initializedGates.add(gate);
+  gate.dataset.gateReady = "true";
   updateGateHint();
+
+  const normalizedDelay = Number.isFinite(Number(openDelayMs))
+    ? Math.min(Math.max(Number(openDelayMs), 0), 4000)
+    : 0;
+  const normalizedOpeningClass = /^[a-z][a-z0-9-]*$/i.test(openingClass)
+    ? openingClass
+    : "is-opening";
+  const modalFocus = manageModalFocus
+    ? createModalFocusController(gate, button, focusTargetSelector)
+    : null;
 
   let opening = false;
   let activePointerId = null;
@@ -167,24 +316,11 @@ export function initGate({ tryAutoplay } = {}){
     });
   };
 
-  const startGateExit = ({ source = "button" } = {}) => {
-    if (opening || !gate.isConnected) return;
-    const dragDistance = source === "swipe" ? currentDragDistance : 0;
-    opening = true;
-    clearResetTimer();
-    resetPointer();
-    removeGestureListeners();
-    button.disabled = true;
-    gate.style.setProperty("pointer-events", "none");
-
+  const completeGateExit = ({ source, dragDistance }) => {
     document.body.classList.remove("locked");
 
     const heroContent = document.querySelector(".hero-content");
     if (heroContent) heroContent.classList.add("revealed");
-
-    if (typeof tryAutoplay === "function"){
-      Promise.resolve(tryAutoplay()).catch(() => {});
-    }
 
     const reducedMotion = prefersReducedMotion();
     const timing = getExitTiming(source, dragDistance);
@@ -212,7 +348,30 @@ export function initGate({ tryAutoplay } = {}){
     );
     gate.style.setProperty("opacity", "0");
 
-    setTimeout(() => gate.remove(), duration);
+    setTimeout(() => {
+      modalFocus?.release();
+      gate.remove();
+    }, duration + 80);
+  };
+
+  const startGateExit = ({ source = "button" } = {}) => {
+    if (opening || !gate.isConnected) return;
+    const dragDistance = source === "swipe" ? currentDragDistance : 0;
+    opening = true;
+    clearResetTimer();
+    resetPointer();
+    removeGestureListeners();
+    button.disabled = true;
+    modalFocus?.focusGate();
+    gate.style.setProperty("pointer-events", "none");
+    gate.classList.add(normalizedOpeningClass);
+
+    if (typeof tryAutoplay === "function"){
+      Promise.resolve(tryAutoplay({ source })).catch(() => {});
+    }
+
+    const delay = prefersReducedMotion() ? 0 : normalizedDelay;
+    setTimeout(() => completeGateExit({ source, dragDistance }), delay);
   };
 
   function handlePointerDown(event){

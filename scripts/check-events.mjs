@@ -11,6 +11,7 @@ import { fileURLToPath } from "node:url";
 
 import { migrateConfig } from "../src/invitation/core/config-migrator.js";
 import { validateConfig } from "../src/invitation/core/config-validator.js";
+import { createSocialMetadata } from "./lib/social-metadata.mjs";
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDirectory, "..");
@@ -267,6 +268,68 @@ function extractEmbeddedJson(html, id){
   }
 }
 
+function escapeHtmlAttribute(value){
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function validateSocialMetadata(event, indexFile, html, config){
+  const metadata = createSocialMetadata(config);
+  const hasOpenGraph = html.includes('property="og:');
+  const hasTwitterCard = html.includes('name="twitter:');
+
+  if (!metadata.available){
+    if (hasOpenGraph || hasTwitterCard){
+      addError(
+        event,
+        indexFile,
+        "El HTML contiene metadatos sociales sin una configuración sharing válida."
+      );
+    }
+    return;
+  }
+
+  const expectedTags = [
+    ["property", "og:title", metadata.title],
+    ["property", "og:description", metadata.description],
+    ["property", "og:url", metadata.url],
+    ["property", "og:type", metadata.type],
+    ["name", "twitter:card", metadata.twitterCard],
+    ["name", "twitter:title", metadata.title],
+    ["name", "twitter:description", metadata.description]
+  ];
+  if (metadata.image){
+    expectedTags.push(
+      ["property", "og:image", metadata.image],
+      ["property", "og:image:alt", metadata.imageAlt],
+      ["name", "twitter:image", metadata.image],
+      ["name", "twitter:image:alt", metadata.imageAlt]
+    );
+  }
+
+  for (const [attribute, name, content] of expectedTags){
+    const tag = `<meta ${attribute}="${name}" content="${escapeHtmlAttribute(content)}" />`;
+    if (!html.includes(tag)){
+      addError(event, indexFile, `Falta el metadato social esperado: ${name}.`);
+    }
+  }
+
+  if (!metadata.image && (
+    html.includes('property="og:image"') ||
+    html.includes('name="twitter:image"')
+  )){
+    addError(
+      event,
+      indexFile,
+      "El HTML inventó una imagen social que no está configurada."
+    );
+  }
+}
+
 function collectConfigAssetReferences(config){
   const references = [];
   const add = (value, field) => {
@@ -276,6 +339,7 @@ function collectConfigAssetReferences(config){
   };
 
   add(config.media?.hero?.src, "media.hero.src");
+  add(config.sharing?.image, "sharing.image");
   add(config.sections?.music?.src, "sections.music.src");
 
   for (const [groupIndex, group] of (
@@ -357,6 +421,28 @@ async function loadTheme(themeId, event){
   if (!isInside(themeDirectory, cssPath) || !await fileExists(cssPath)){
     addError(event, manifestPath, `No existe el CSS declarado por el tema: ${manifest.css}`);
     return { manifest, manifestPath, cssPath: null };
+  }
+
+  for (const property of ["shell", "script"]){
+    if (manifest[property] === undefined) continue;
+    const reference = classifyReference(manifest[property]);
+    if (reference.kind !== "local" || reference.containsTraversal){
+      addError(
+        event,
+        manifestPath,
+        `El archivo ${property} del tema usa una ruta insegura: ${manifest[property]}`
+      );
+      continue;
+    }
+
+    const filePath = path.resolve(themeDirectory, reference.pathname);
+    if (!isInside(themeDirectory, filePath) || !await fileExists(filePath)){
+      addError(
+        event,
+        manifestPath,
+        `No existe el archivo ${property} declarado por el tema: ${manifest[property]}`
+      );
+    }
   }
 
   return { manifest, manifestPath, cssPath };
@@ -583,6 +669,8 @@ async function validateGeneratedEvent(sourceEvent){
       addError(event, indexFile, "La configuración incrustada no coincide con la fuente canónica.");
     }
   }
+
+  validateSocialMetadata(event, indexFile, html, config);
 
   const executableConfigReference =
     /\b(?:fetch|import)\s*\(\s*(["'])[^"']*\bconfig\.json\b[^"']*\1/i.test(html);

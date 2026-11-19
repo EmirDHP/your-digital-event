@@ -15,8 +15,10 @@ export function normalizeConfig(config){
   const sections = asObject(config.sections);
   const media = asObject(config.media);
   const hero = asObject(media.hero);
+  const sharing = asObject(config.sharing);
   const people = asObject(sections.people);
   const details = asObject(sections.details);
+  const faq = asObject(sections.faq);
 
   return {
     schemaVersion: config.schemaVersion,
@@ -27,8 +29,18 @@ export function normalizeConfig(config){
     names: event.names,
     tagline: event.tagline ?? "",
     dateISO: date.iso,
+    dateEndISO: date.endIso ?? "",
+    timeZone: date.timeZone,
     heroImage: hero.src ?? "",
     branding: asObject(config.branding),
+    sharing: {
+      ...sharing,
+      url: sharing.url ?? "",
+      title: sharing.title ?? `Invitación • ${event.names ?? ""}`,
+      description: sharing.description ?? event.tagline ?? "",
+      image: sharing.image ?? hero.src ?? "",
+      imageAlt: sharing.imageAlt ?? hero.alt ?? event.names ?? ""
+    },
 
     sections: {
       message: { ...asObject(sections.message) },
@@ -61,6 +73,13 @@ export function normalizeConfig(config){
       schedule: {
         ...asObject(sections.schedule),
         items: asArray(asObject(sections.schedule).items)
+      },
+      faq: {
+        ...faq,
+        enabled: faq.enabled === true,
+        items: asArray(faq.items).map((item) => ({
+          ...asObject(item)
+        }))
       },
       story: {
         ...asObject(sections.story),

@@ -23,6 +23,7 @@ import { initHeroParallax, initRevealAnimations } from "./reveal.js";
 import { applyThemePalette } from "./theme-palette.js";
 import { renderBranding } from "./branding.js";
 import { renderSchedule } from "../sections/schedule.js";
+import { renderFaq } from "../sections/faq.js";
 import { renderPeople } from "../sections/people.js";
 import { renderDetails } from "../sections/details.js";
 import { renderStory } from "../sections/story.js";
@@ -106,6 +107,9 @@ async function initializeInvitation(options){
   if (sections.schedule.enabled) renderSchedule(sections.schedule.items);
   setSectionAvailability("itinerario", sections.schedule.enabled);
 
+  const faqRendered = renderFaq(sections.faq);
+  setSectionAvailability("faq", sections.faq.enabled && faqRendered);
+
   renderStory(sections.story);
   setSectionAvailability("historia", sections.story.enabled);
 
@@ -122,7 +126,10 @@ async function initializeInvitation(options){
 
   if (sections.gallery.enabled) lightbox.init();
   initMusic(sections.music);
-  initGate({ tryAutoplay: tryAutoplayMusic });
+  initGate({
+    tryAutoplay: tryAutoplayMusic,
+    ...options.gateOptions
+  });
   initRsvp(sections.rsvp);
 
   if (sections.countdown.enabled && config.dateISO){
@@ -142,14 +149,12 @@ function reportInitializationError(error){
     console.error("No se pudo inicializar la invitación.");
   }
 
-  const openButton = byId("openInvite");
-  if (openButton) openButton.disabled = true;
-
-  const hint = document.querySelector(".gate-hint");
-  if (hint){
-    hint.textContent =
-      "No fue posible cargar esta invitación. Intenta recargar la página.";
-  }
+  document.body.classList.remove("locked");
+  document.querySelector(".hero-content")?.classList.add("revealed", "in");
+  document.querySelectorAll(".reveal").forEach((element) => {
+    element.classList.add("in");
+  });
+  byId("gate")?.remove();
 }
 
 export function startInvitation(options = {}){

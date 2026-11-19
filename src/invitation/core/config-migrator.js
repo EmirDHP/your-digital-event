@@ -34,7 +34,8 @@ function getTheme(template){
     "blush",
     "regal",
     "alba",
-    "celeste"
+    "celeste",
+    "evermore"
   ];
   return knownThemes.find((theme) => value === theme || value.startsWith(`${theme}-`))
     || value;
@@ -193,6 +194,7 @@ function migrateLegacyConfig(rawConfig){
       tagline: raw.tagline ?? "",
       date: {
         iso: raw.dateISO ?? "",
+        ...(hasText(raw.dateEndISO) ? { endIso: raw.dateEndISO } : {}),
         timeZone: raw.timeZone || DEFAULT_TIME_ZONE,
         display: raw.dateDisplay ?? "",
         timeDisplay: raw.timeDisplay ?? ""

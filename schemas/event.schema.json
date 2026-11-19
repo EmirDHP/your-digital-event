@@ -30,7 +30,7 @@
     },
     "theme": {
       "type": "string",
-      "enum": ["aura", "eclipse", "ivory", "blush", "regal", "alba", "celeste"]
+      "enum": ["aura", "eclipse", "ivory", "blush", "regal", "alba", "celeste", "evermore"]
     },
     "event": {
       "$ref": "#/$defs/event"
@@ -43,6 +43,9 @@
     },
     "branding": {
       "$ref": "#/$defs/branding"
+    },
+    "sharing": {
+      "$ref": "#/$defs/sharing"
     }
   },
   "$defs": {
@@ -133,6 +136,10 @@
           "type": "string",
           "format": "date-time"
         },
+        "endIso": {
+          "type": "string",
+          "format": "date-time"
+        },
         "timeZone": {
           "type": "string",
           "minLength": 1
@@ -195,6 +202,9 @@
         },
         "schedule": {
           "$ref": "#/$defs/scheduleSection"
+        },
+        "faq": {
+          "$ref": "#/$defs/faqSection"
         },
         "story": {
           "$ref": "#/$defs/storySection"
@@ -429,6 +439,59 @@
           "minLength": 1
         },
         "title": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "faqSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "intro": {
+          "type": "string",
+          "minLength": 1
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/faqItem"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "enabled": { "const": true }
+            },
+            "required": ["enabled"]
+          },
+          "then": {
+            "required": ["title", "items"]
+          }
+        }
+      ]
+    },
+    "faqItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["question", "answer"],
+      "properties": {
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "answer": {
           "type": "string",
           "minLength": 1
         }
@@ -762,6 +825,41 @@
           "$ref": "#/$defs/heroMedia"
         }
       }
+    },
+    "sharing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "description"],
+      "properties": {
+        "url": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "image": {
+          "$ref": "#/$defs/safeAssetPath"
+        },
+        "imageAlt": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": ["image"]
+          },
+          "then": {
+            "required": ["imageAlt"]
+          }
+        }
+      ]
     },
     "heroMedia": {
       "type": "object",
