@@ -12,7 +12,11 @@ import {
   setElementAvailability,
   setSectionAvailability
 } from "./navigation.js";
-import { initGate, scheduleHeroRevealFallback } from "./gate.js";
+import {
+  initGate,
+  scheduleHeroRevealFallback,
+  updateGateHint
+} from "./gate.js";
 import { startCountdown } from "./countdown.js";
 import { initMusic, tryAutoplayMusic } from "./music.js";
 import { initHeroParallax, initRevealAnimations } from "./reveal.js";
@@ -31,6 +35,7 @@ let startPromise = null;
 
 async function initializeInvitation(options){
   scheduleHeroRevealFallback();
+  updateGateHint();
 
   const rawConfig = await loadConfig(options.configUrl || "config.json");
   const migration = migrateConfig(rawConfig);

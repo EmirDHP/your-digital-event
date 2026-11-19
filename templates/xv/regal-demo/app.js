@@ -463,23 +463,13 @@ async function tryAutoplayMusic(){
 }
 
 function initGate(){
-  const gate = $("gate");
-  const btn = $("openInvite");
-  if (!gate || !btn) return;
-
-  btn.addEventListener("click", async () => {
-    document.body.classList.remove("locked");
-    gate.classList.add("hide");
-
-    // reveal hero
-    const hc = document.querySelector(".hero-content");
-    if (hc) hc.classList.add("revealed");
-
-    // Intentar reproducir música al abrir invitación
-    await tryAutoplayMusic();
-
-    setTimeout(() => gate.remove(), 520);
-  });
+  import("../../../src/invitation/core/gate.js")
+    .then(({ initGate: initSharedGate }) => {
+      initSharedGate({ tryAutoplay: tryAutoplayMusic });
+    })
+    .catch((error) => {
+      console.error("No se pudo inicializar el gate compartido.", error);
+    });
 }
 
 // If gate is removed/disabled later, ensure hero shows
