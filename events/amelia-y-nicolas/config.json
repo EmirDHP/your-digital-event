@@ -78,7 +78,7 @@
       ]
     },
     "rsvp": { "enabled": true, "channel": "whatsapp", "number": "520000000001", "message": "Hola, confirmo mi asistencia a la boda ficticia de Amelia & Nicolás. Mi nombre es: " },
-    "music": { "enabled": true, "src": "assets/audio/amelia-theme.wav", "label": "Música de Amelia y Nicolás" }
+    "music": { "enabled": true, "src": "assets/audio/eclipse-theme.mp3", "label": "Música de Amelia y Nicolás" }
   },
   "media": { "hero": { "src": "assets/editorial/amelia-cover.svg", "alt": "Composición editorial de Amelia y Nicolás" } },
   "sharing": {

@@ -451,6 +451,11 @@ img{ display: block; max-width: 100%; }
   letter-spacing: -.045em;
   text-wrap: balance;
 }
+#heroNames:focus{
+  outline: 3px solid rgba(169,132,67,.72);
+  outline-offset: .35rem;
+}
+.evermore-pointer-input #heroNames:focus{ outline: none; }
 .ornament{
   display: flex;
   align-items: center;

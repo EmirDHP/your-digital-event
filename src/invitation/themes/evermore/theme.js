@@ -4,6 +4,15 @@ const navigation = document.querySelector("#evermoreNavigation");
 
 document.documentElement.classList.add("evermore-js");
 
+document.addEventListener("keydown", (event) => {
+  if (event.metaKey || event.ctrlKey || event.altKey) return;
+  document.documentElement.classList.remove("evermore-pointer-input");
+}, true);
+
+document.addEventListener("pointerdown", () => {
+  document.documentElement.classList.add("evermore-pointer-input");
+}, true);
+
 // Fail open if the shared runtime cannot initialize the gate.
 if (gate){
   window.setTimeout(() => {
