@@ -134,7 +134,9 @@ async function validateSchemaDocument(){
     schema.properties?.sharing?.$ref === "#/$defs/sharing" &&
       !schema.required?.includes("sharing") &&
       schema.$defs?.sharing?.required?.includes("url") &&
-      schema.$defs?.sharing?.required?.includes("description"),
+      schema.$defs?.sharing?.required?.includes("description") &&
+      schema.$defs?.sharing?.properties?.imageWidth?.type === "integer" &&
+      schema.$defs?.sharing?.properties?.imageHeight?.type === "integer",
     "sharing debe ser opcional y exigir URL y descripción cuando se declara."
   );
   assert(
@@ -286,7 +288,9 @@ function validateSocialMetadataContract(){
     url: "https://www.your-digital-event.com/events/amelia-y-nicolas",
     description: "Invitación a la boda de Amelia & Nicolás",
     image: "assets/share/card social.jpg",
-    imageAlt: "Amelia y Nicolás"
+    imageAlt: "Amelia y Nicolás",
+    imageWidth: 1200,
+    imageHeight: 630
   };
 
   const ameliaMetadata = createSocialMetadata(amelia);
@@ -302,6 +306,8 @@ function validateSocialMetadataContract(){
     ameliaMetadata.image ===
       "https://www.your-digital-event.com/events/amelia-y-nicolas/assets/share/card%20social.jpg" &&
       ameliaMetadata.imageAlt === "Amelia y Nicolás" &&
+      ameliaMetadata.imageWidth === 1200 &&
+      ameliaMetadata.imageHeight === 630 &&
       ameliaMetadata.twitterCard === "summary_large_image",
     "La imagen social debe resolverse como HTTPS absoluta y activar Twitter Card grande."
   );

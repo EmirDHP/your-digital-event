@@ -152,8 +152,13 @@ function renderSocialMetaTags(config){
   ];
 
   if (metadata.image){
-    tags.splice(2, 0, ["property", "og:image", metadata.image]);
-    tags.splice(3, 0, ["property", "og:image:alt", metadata.imageAlt]);
+    const imageTags = [["property", "og:image", metadata.image]];
+    if (metadata.imageWidth && metadata.imageHeight){
+      imageTags.push(["property", "og:image:width", String(metadata.imageWidth)]);
+      imageTags.push(["property", "og:image:height", String(metadata.imageHeight)]);
+    }
+    imageTags.push(["property", "og:image:alt", metadata.imageAlt]);
+    tags.splice(2, 0, ...imageTags);
     tags.push(["name", "twitter:image", metadata.image]);
     tags.push(["name", "twitter:image:alt", metadata.imageAlt]);
   }

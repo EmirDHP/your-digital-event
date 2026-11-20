@@ -848,6 +848,14 @@
         "imageAlt": {
           "type": "string",
           "minLength": 1
+        },
+        "imageWidth": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "imageHeight": {
+          "type": "integer",
+          "minimum": 1
         }
       },
       "allOf": [
@@ -857,6 +865,17 @@
           },
           "then": {
             "required": ["imageAlt"]
+          }
+        },
+        {
+          "if": {
+            "anyOf": [
+              { "required": ["imageWidth"] },
+              { "required": ["imageHeight"] }
+            ]
+          },
+          "then": {
+            "required": ["image", "imageWidth", "imageHeight"]
           }
         }
       ]

@@ -309,6 +309,12 @@ function validateSocialMetadata(event, indexFile, html, config){
       ["name", "twitter:image", metadata.image],
       ["name", "twitter:image:alt", metadata.imageAlt]
     );
+    if (metadata.imageWidth && metadata.imageHeight){
+      expectedTags.push(
+        ["property", "og:image:width", String(metadata.imageWidth)],
+        ["property", "og:image:height", String(metadata.imageHeight)]
+      );
+    }
   }
 
   for (const [attribute, name, content] of expectedTags){

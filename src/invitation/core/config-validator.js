@@ -69,6 +69,12 @@ function requireText(value, path, errors){
   return true;
 }
 
+function validatePositiveInteger(value, path, errors){
+  if (!Number.isInteger(value) || value < 1){
+    addIssue(errors, path, "INVALID_DIMENSION", "Debe ser un entero positivo.");
+  }
+}
+
 function isSafeAssetPath(value){
   if (!hasText(value)) return false;
   if (/^[A-Za-z][A-Za-z0-9+.-]*:/.test(value)) return false;
@@ -511,6 +517,22 @@ function validateSharing(sharing, errors){
     requireText(value.imageAlt, "sharing.imageAlt", errors);
   }else if (value.imageAlt !== undefined){
     requireText(value.imageAlt, "sharing.imageAlt", errors);
+  }
+
+  if (value.imageWidth !== undefined || value.imageHeight !== undefined){
+    if (value.image === undefined){
+      addIssue(errors, "sharing.image", "REQUIRED_FIELD", "Debe declarar una imagen.");
+    }
+    if (value.imageWidth === undefined){
+      addIssue(errors, "sharing.imageWidth", "REQUIRED_FIELD", "Debe declarar el ancho.");
+    }else{
+      validatePositiveInteger(value.imageWidth, "sharing.imageWidth", errors);
+    }
+    if (value.imageHeight === undefined){
+      addIssue(errors, "sharing.imageHeight", "REQUIRED_FIELD", "Debe declarar el alto.");
+    }else{
+      validatePositiveInteger(value.imageHeight, "sharing.imageHeight", errors);
+    }
   }
 }
 

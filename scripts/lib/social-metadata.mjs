@@ -35,6 +35,9 @@ export function createSocialMetadata(config){
   }
 
   const image = resolveImageUrl(sharing.image, eventUrl.href);
+  const hasImageDimensions = image &&
+    Number.isInteger(sharing.imageWidth) && sharing.imageWidth > 0 &&
+    Number.isInteger(sharing.imageHeight) && sharing.imageHeight > 0;
   return {
     available: true,
     title: sharing.title,
@@ -43,6 +46,8 @@ export function createSocialMetadata(config){
     type: "website",
     image,
     imageAlt: image ? sharing.imageAlt : "",
+    imageWidth: hasImageDimensions ? sharing.imageWidth : null,
+    imageHeight: hasImageDimensions ? sharing.imageHeight : null,
     twitterCard: image ? "summary_large_image" : "summary"
   };
 }

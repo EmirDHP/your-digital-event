@@ -85,8 +85,10 @@
     "url": "https://www.your-digital-event.com/events/amelia-y-nicolas/",
     "title": "La boda de Amelia & Nicolás",
     "description": "Invitación ficticia de Amelia y Nicolás",
-    "image": "assets/social/amelia-social.svg",
-    "imageAlt": "Tarjeta social original de Amelia y Nicolás"
+    "image": "assets/social/amelia-social.png",
+    "imageAlt": "Tarjeta editorial de la boda de Amelia y Nicolás con fecha 16 de octubre de 2027",
+    "imageWidth": 1200,
+    "imageHeight": 630
   },
   "branding": { "footerText": "Diseñado por Your Digital Event" }
 }

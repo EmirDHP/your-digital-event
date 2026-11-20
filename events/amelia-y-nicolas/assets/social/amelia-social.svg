@@ -1,9 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Tarjeta social original de Amelia &amp; Nicolás">
-  <rect width="1200" height="630" fill="#fff6e8"/>
-  <rect x="34" y="34" width="1132" height="562" fill="none" stroke="#b58a42" stroke-width="3"/>
-  <circle cx="270" cy="315" r="190" fill="#24324d"/>
-  <circle cx="930" cy="315" r="190" fill="none" stroke="#b58a42" stroke-width="22"/>
-  <path d="M420 315h360" stroke="#b58a42" stroke-width="4"/>
-  <text x="600" y="292" text-anchor="middle" fill="#24324d" font-family="Georgia,serif" font-size="46">Amelia &amp; Nicolás</text>
-  <text x="600" y="350" text-anchor="middle" fill="#b58a42" font-family="Arial,sans-serif" font-size="18" letter-spacing="6">INVITACIÓN DE PRUEBA</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Amelia &amp; Nicolás · Invitación de boda</title>
+  <desc id="description">Tarjeta editorial marfil, azul marino y dorado con la fecha 16 de octubre de 2027.</desc>
+  <rect width="1200" height="630" fill="#f4eddf"/>
+  <rect x="26" y="26" width="1148" height="578" fill="none" stroke="#20304d" stroke-width="3"/>
+  <rect x="39" y="39" width="1122" height="552" fill="none" stroke="#aa8440" stroke-width="1.5"/>
+
+  <path d="M78 82h122M1000 82h122M78 548h122M1000 548h122" stroke="#aa8440" stroke-width="2"/>
+  <path d="M78 82v76M1122 82v76M78 472v76M1122 472v76" stroke="#20304d" stroke-width="2"/>
+  <circle cx="600" cy="128" r="42" fill="#20304d"/>
+  <circle cx="600" cy="128" r="34" fill="none" stroke="#c5a35f" stroke-width="1.5"/>
+  <text x="600" y="137" text-anchor="middle" fill="#f4eddf" font-family="Georgia, 'Times New Roman', serif" font-size="24" letter-spacing="2">A·N</text>
+
+  <text x="600" y="207" text-anchor="middle" fill="#80632e" font-family="Arial, sans-serif" font-size="17" font-weight="600" letter-spacing="7">INVITACIÓN DE BODA</text>
+  <path d="M250 235h250M700 235h250" stroke="#aa8440" stroke-width="1.5"/>
+  <path d="M590 235l10-10 10 10-10 10z" fill="#aa8440"/>
+
+  <text x="600" y="345" text-anchor="middle" fill="#20304d" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-style="italic">Amelia &amp; Nicolás</text>
+  <text x="600" y="416" text-anchor="middle" fill="#80632e" font-family="Arial, sans-serif" font-size="25" font-weight="600" letter-spacing="6">16 · OCTUBRE · 2027</text>
+
+  <path d="M450 467h300" stroke="#aa8440" stroke-width="1.5"/>
+  <circle cx="600" cy="467" r="5" fill="#f4eddf" stroke="#aa8440" stroke-width="1.5"/>
+  <text x="600" y="527" text-anchor="middle" fill="#20304d" font-family="Arial, sans-serif" font-size="13" font-weight="600" letter-spacing="4">YOUR DIGITAL EVENT</text>
 </svg>
