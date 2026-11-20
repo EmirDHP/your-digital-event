@@ -32,6 +32,8 @@ const rootPublicFiles = [
   "catalog.json",
   "home.css",
   "home.js",
+  "home-v4.css",
+  "home-v4.js",
   "site.css",
   "site.js",
   "category.css",
