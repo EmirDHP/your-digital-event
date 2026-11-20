@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Tarjeta social original de Amelia &amp; Nicolás">
+  <rect width="1200" height="630" fill="#fff6e8"/>
+  <rect x="34" y="34" width="1132" height="562" fill="none" stroke="#b58a42" stroke-width="3"/>
+  <circle cx="270" cy="315" r="190" fill="#24324d"/>
+  <circle cx="930" cy="315" r="190" fill="none" stroke="#b58a42" stroke-width="22"/>
+  <path d="M420 315h360" stroke="#b58a42" stroke-width="4"/>
+  <text x="600" y="292" text-anchor="middle" fill="#24324d" font-family="Georgia,serif" font-size="46">Amelia &amp; Nicolás</text>
+  <text x="600" y="350" text-anchor="middle" fill="#b58a42" font-family="Arial,sans-serif" font-size="18" letter-spacing="6">INVITACIÓN DE PRUEBA</text>
+</svg>

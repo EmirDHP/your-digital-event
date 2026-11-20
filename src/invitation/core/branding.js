@@ -45,7 +45,7 @@ function createSignature(footer){
   dots.append(document.createElement("span"), document.createElement("span"));
 
   brand.append(name, dots);
-  link.append(label, brand);
+  link.append(label, document.createTextNode(" "), brand);
   return link;
 }
 

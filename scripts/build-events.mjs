@@ -572,6 +572,18 @@ async function copySharedRuntime(destinationRoot){
     const source = path.join(themesRoot, entry.name);
     const destination = path.join(sharedRoot, "themes", entry.name);
     await cp(source, destination, { recursive: true });
+    await rm(path.join(destination, "shell.html"), { force: true });
+
+    const publicManifestPath = path.join(destination, "manifest.json");
+    const publicManifest = JSON.parse(await readFile(publicManifestPath, "utf8"));
+    if (Object.hasOwn(publicManifest, "shell")){
+      delete publicManifest.shell;
+      await writeFile(
+        publicManifestPath,
+        `${JSON.stringify(publicManifest, null, 2)}\n`,
+        "utf8"
+      );
+    }
   }
 }
 

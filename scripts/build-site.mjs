@@ -45,6 +45,7 @@ const publicExtensions = new Set([
   ".js",
   ".mjs",
   ".json",
+  ".ics",
   ".jpg",
   ".jpeg",
   ".png",
@@ -513,7 +514,11 @@ async function validateEvents(artifactRoot) {
     }
     const children = await readdir(eventRoot, { withFileTypes: true });
     for (const child of children) {
-      if (child.name !== "index.html" && child.name !== "assets") {
+      if (
+        child.name !== "index.html" &&
+        child.name !== "evento.ics" &&
+        child.name !== "assets"
+      ) {
         throw new Error(
           `El evento publicado ${entry.name} contiene una fuente no permitida: ${child.name}`,
         );

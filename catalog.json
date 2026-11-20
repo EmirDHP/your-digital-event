@@ -38,6 +38,17 @@
       "cover": "assets/covers/ivory.jpg",
       "featured": false
     },
+    {
+      "id": "evermore",
+      "name": "Evermore",
+      "type": "Boda",
+      "collection": "Editorial clásico",
+      "style": ["Editorial", "Clásico", "Elegante"],
+      "description": "Papelería fina en marfil, azul tinta y dorado, con apertura de sobre y composición editorial.",
+      "demoUrl": "events/amelia-y-nicolas/",
+      "cover": "assets/covers/evermore.svg",
+      "featured": false
+    },
 
 
     {

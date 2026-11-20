@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "slug": "amelia-y-nicolas",
+  "theme": "evermore",
+  "language": "es",
+  "event": {
+    "type": "wedding",
+    "names": "Amelia & Nicolás",
+    "tagline": "Un nuevo capítulo comienza",
+    "date": {
+      "iso": "2027-10-16T17:00:00-06:00",
+      "endIso": "2027-10-17T01:00:00-06:00",
+      "timeZone": "America/Matamoros",
+      "display": "16 · Octubre · 2027",
+      "timeDisplay": "5:00 PM"
+    },
+    "venue": {
+      "name": "Jardín Magnolia",
+      "address": "Avenida de Muestra 101, Ciudad Ficticia"
+    }
+  },
+  "sections": {
+    "message": { "enabled": true, "title": "Celebremos juntos", "body": "Queremos compartir contigo una tarde llena de alegría, promesas y nuevos recuerdos." },
+    "countdown": { "enabled": true },
+    "details": {
+      "enabled": true,
+      "locations": [
+        { "kind": "ceremony", "label": "Ceremonia", "name": "Capilla del Olivo", "dateDisplay": "16 · Octubre · 2027", "timeDisplay": "5:00 PM", "address": "Calle Ceremonia 10, Ciudad Ficticia" },
+        { "kind": "reception", "label": "Recepción", "name": "Jardín Magnolia", "dateDisplay": "16 · Octubre · 2027", "timeDisplay": "7:00 PM", "address": "Avenida de Muestra 101, Ciudad Ficticia" }
+      ]
+    },
+    "schedule": {
+      "enabled": true,
+      "items": [
+        { "time": "5:00 PM", "title": "Ceremonia" },
+        { "time": "7:00 PM", "title": "Recepción" },
+        { "time": "8:30 PM", "title": "Cena" },
+        { "time": "10:00 PM", "title": "Celebración" }
+      ]
+    },
+    "story": {
+      "enabled": true,
+      "title": "Nuestra historia",
+      "subtitle": "Tres momentos inolvidables",
+      "items": [
+        { "title": "El encuentro", "text": "Una tarde de otoño convirtió una conversación casual en el comienzo de nuestra historia.", "image": "assets/story/story1.jpg", "alt": "Retrato cercano en blanco y negro de una pareja" },
+        { "title": "El viaje", "text": "Aprendimos a caminar en la misma dirección y a celebrar cada pequeña aventura.", "image": "assets/story/story2.jpg", "alt": "Pareja sonriente caminando junta al aire libre" },
+        { "title": "La promesa", "text": "Hoy elegimos continuar esta historia rodeados de quienes más queremos.", "image": "assets/story/story3.jpg", "alt": "Pareja abrazada y sonriendo en un entorno arbolado" }
+      ]
+    },
+    "gallery": {
+      "enabled": true,
+      "items": [
+        { "thumb": "assets/gallery/thumbs/gallery1.jpg", "full": "assets/gallery/full/gallery1.jpg", "alt": "Retrato formal de una pareja con vestuario azul marino y negro" },
+        { "thumb": "assets/gallery/thumbs/gallery2.jpg", "full": "assets/gallery/full/gallery2.jpg", "alt": "Retrato cercano y afectuoso de una pareja al aire libre" },
+        { "thumb": "assets/gallery/thumbs/gallery3.jpg", "full": "assets/gallery/full/gallery3.jpg", "alt": "Pareja con vestuario blanco y negro junto a una balaustrada" },
+        { "thumb": "assets/gallery/thumbs/gallery4.jpg", "full": "assets/gallery/full/gallery4.jpg", "alt": "Pareja de cuerpo entero en un jardín con montañas al fondo" },
+        { "thumb": "assets/gallery/thumbs/gallery5.jpg", "full": "assets/gallery/full/gallery5.jpg", "alt": "Retrato formal de cuerpo entero en un jardín" }
+      ]
+    },
+    "dressCode": { "enabled": true, "text": "Formal en tonos cálidos" },
+    "gifts": {
+      "enabled": true,
+      "title": "Mesa de regalos",
+      "intro": "Tu compañía es nuestro mejor regalo. Estas opciones son exclusivamente de prueba.",
+      "options": [
+        { "type": "sobre", "label": "Lluvia de sobres", "text": "Habrá un espacio de muestra durante la recepción." },
+        { "type": "transfer", "label": "Transferencia ficticia", "bank": "Banco de Prueba A", "holder": "Amelia Ejemplo", "clabe": "000000000000000001" }
+      ]
+    },
+    "faq": {
+      "enabled": true,
+      "title": "Preguntas frecuentes",
+      "intro": "Información para esta celebración ficticia.",
+      "items": [
+        { "question": "¿La invitación es personal?", "answer": "Sí, confirma únicamente los lugares indicados en tu mensaje." },
+        { "question": "¿Habrá estacionamiento?", "answer": "El recinto ficticio incluye estacionamiento de cortesía." }
+      ]
+    },
+    "rsvp": { "enabled": true, "channel": "whatsapp", "number": "520000000001", "message": "Hola, confirmo mi asistencia a la boda ficticia de Amelia & Nicolás. Mi nombre es: " },
+    "music": { "enabled": true, "src": "assets/audio/amelia-theme.wav", "label": "Música de Amelia y Nicolás" }
+  },
+  "media": { "hero": { "src": "assets/editorial/amelia-cover.svg", "alt": "Composición editorial de Amelia y Nicolás" } },
+  "sharing": {
+    "url": "https://www.your-digital-event.com/events/amelia-y-nicolas/",
+    "title": "La boda de Amelia & Nicolás",
+    "description": "Invitación ficticia de Amelia y Nicolás",
+    "image": "assets/social/amelia-social.svg",
+    "imageAlt": "Tarjeta social original de Amelia y Nicolás"
+  },
+  "branding": { "footerText": "Diseñado por Your Digital Event" }
+}

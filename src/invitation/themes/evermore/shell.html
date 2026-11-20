@@ -89,12 +89,6 @@
 <!-- ENDIF:rsvp -->
                     </div>
 
-<!-- IF:music -->
-                    <div class="music" id="musicWrap" hidden>
-                        <button class="btn music-button" id="musicBtn" type="button">Reproducir música</button>
-                        <audio id="musicAudio" preload="none"></audio>
-                    </div>
-<!-- ENDIF:music -->
                 </div>
             </div>
         </section>
@@ -228,6 +222,13 @@
         </footer>
 <!-- ENDIF:footer -->
     </main>
+
+<!-- IF:music -->
+    <div class="music" id="musicWrap" hidden>
+        <button class="btn music-button" id="musicBtn" type="button">Reproducir música</button>
+        <audio id="musicAudio" preload="none"></audio>
+    </div>
+<!-- ENDIF:music -->
 
 <!-- IF:gallery -->
     <div id="lightbox" class="lightbox" hidden aria-hidden="true">

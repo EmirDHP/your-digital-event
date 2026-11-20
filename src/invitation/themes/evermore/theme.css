@@ -519,7 +519,7 @@ img{ display: block; max-width: 100%; }
 .menu-button:focus-visible{ outline: 3px solid rgba(169,132,67,.62); outline-offset: 3px; }
 .music{
   position: fixed;
-  z-index: 140;
+  z-index: 90;
   right: 1rem;
   bottom: max(1rem, env(safe-area-inset-bottom));
   margin: 0;

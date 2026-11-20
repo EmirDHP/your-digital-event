@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Recurso original amelia 1">
+  <rect width="800" height="1000" fill="#fff6e8"/>
+  <rect x="44" y="44" width="712" height="912" fill="none" stroke="#b58a42" stroke-width="3"/>
+  <circle cx="310" cy="390" r="123" fill="#24324d" opacity=".94"/>
+  <circle cx="572.5" cy="535" r="158" fill="none" stroke="#b58a42" stroke-width="18"/>
+  <path d="M110 742 Q400 632 690 742" fill="none" stroke="#24324d" stroke-width="9"/>
+  <path d="M160 825h480M230 865h340" stroke="#b58a42" stroke-width="4"/>
+</svg>
