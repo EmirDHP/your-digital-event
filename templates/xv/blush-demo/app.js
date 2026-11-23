@@ -30,11 +30,22 @@ function setHeroImage(path){
   bg.style.backgroundImage = `url("${path}")`;
 }
 
+function setSectionAvailability(sectionId, isAvailable){
+  const section = $(sectionId);
+  if (section) section.hidden = !isAvailable;
+
+  document.querySelectorAll(`a[href="#${sectionId}"]`).forEach((link) => {
+    link.hidden = !isAvailable;
+  });
+}
+
 function renderSchedule(items){
   const wrap = $("scheduleList");
   if (!wrap) return;
+  const valid = Array.isArray(items) ? items.filter((item) => item?.time || item?.title) : [];
+  setSectionAvailability("itinerario", valid.length > 0);
   wrap.innerHTML = "";
-  (items || []).forEach((it) => {
+  valid.forEach((it) => {
     const row = document.createElement("div");
     row.className = "tl-item";
     row.innerHTML = `
@@ -55,11 +66,11 @@ function renderStory(story){
   if (!section || !titleEl || !subtitleEl || !list) return;
 
   if (!story?.enabled || !Array.isArray(story.items) || story.items.length === 0){
-    section.hidden = true;
+    setSectionAvailability("historia", false);
     return;
   }
 
-  section.hidden = false;
+  setSectionAvailability("historia", true);
   safeText(titleEl, story.title || "Nuestra historia");
   safeText(subtitleEl, story.subtitle || "Cómo sucedió");
 
@@ -115,11 +126,11 @@ function renderGifts(gifts){
 
   // Hide if disabled or empty
   if (!gifts?.enabled || !Array.isArray(gifts.options) || gifts.options.length === 0){
-    section.hidden = true;
+    setSectionAvailability("regalos", false);
     return;
   }
 
-  section.hidden = false;
+  setSectionAvailability("regalos", true);
   safeText(titleEl, gifts.title || "Mesa de regalos");
   safeText(introEl, gifts.intro || "");
 
@@ -253,15 +264,15 @@ let MUSIC_STATE = {
 function renderGallery(gallery){
   const grid = $("galleryGrid");
   if (!grid) return;
-  grid.innerHTML = "";
 
-  const valid = (gallery || []).filter(g => g?.thumb || g?.full || g?.src);
+  const valid = Array.isArray(gallery)
+    ? gallery.filter(g => g?.thumb || g?.full || g?.src)
+    : [];
+  setSectionAvailability("galeria", valid.length > 0);
+  grid.innerHTML = "";
   GALLERY_ITEMS = valid;
 
-  if (valid.length === 0) {
-    grid.innerHTML = `<div class="muted">Aún no se han agregado fotos.</div>`;
-    return;
-  }
+  if (valid.length === 0) return;
 
   valid.forEach((g, idx) => {
     const box = document.createElement("button");

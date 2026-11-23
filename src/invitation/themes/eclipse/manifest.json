@@ -19,6 +19,20 @@
     }
   ],
   "runtimeOptions": {
-    "preserveEmptyHeroState": true
+    "preserveEmptyHeroState": true,
+    "paletteVariables": {
+      "background": "--bg",
+      "foreground": "--fg",
+      "muted": "--muted",
+      "accent": "--gold",
+      "card": "--card",
+      "stroke": "--stroke",
+      "focus": "--ring",
+      "accentSoftBorder": "--accent-soft-border",
+      "accentSoftBackground": "--accent-soft-bg",
+      "accentSoftText": "--accent-soft-text",
+      "surfaceElevated": "--surface-elevated",
+      "surfaceSubtle": "--surface-subtle"
+    }
   }
 }

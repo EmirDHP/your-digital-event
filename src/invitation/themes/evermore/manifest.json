@@ -22,6 +22,16 @@
   ],
   "runtimeOptions": {
     "preserveEmptyHeroState": true,
+    "paletteVariables": {
+      "canvas": "--evermore-ivory",
+      "paper": "--evermore-paper",
+      "paperDeep": "--evermore-paper-deep",
+      "ink": "--evermore-ink",
+      "inkSoft": "--evermore-ink-soft",
+      "accent": "--evermore-gold",
+      "accentDark": "--evermore-gold-dark",
+      "line": "--evermore-line"
+    },
     "gateOptions": {
       "openDelayMs": 1050,
       "openingClass": "is-opening",
